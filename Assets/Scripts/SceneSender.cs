@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class SceneSender01to02 : MonoBehaviour
+public class SceneSender : MonoBehaviour
 {
+    public string SceneName;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public void SceneSend(){
+        SceneManager.LoadScene(SceneName);
     }
 }
