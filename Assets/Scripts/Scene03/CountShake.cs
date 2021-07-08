@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CountShake : MonoBehaviour
 {
-    private int shake;
+    public int shake;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,7 @@ public class CountShake : MonoBehaviour
         
     }
 
-    void IncrementShake()
+    public void IncrementShake()
     {
         shake += 1;
     }
