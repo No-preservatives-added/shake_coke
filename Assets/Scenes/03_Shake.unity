@@ -452,6 +452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 467946990}
+  - component: {fileID: 467946993}
   - component: {fileID: 467946991}
   - component: {fileID: 467946992}
   m_Layer: 0
@@ -505,6 +506,19 @@ MonoBehaviour:
   StopTime: 5
   MarginTimeText: {fileID: 368143439}
   RemainTimeText: {fileID: 957851833}
+--- !u!114 &467946993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467946989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d5f13d8ee4c4b43b952f3444343b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneName: 04_Releace
 --- !u!1 &590700026
 GameObject:
   m_ObjectHideFlags: 0
