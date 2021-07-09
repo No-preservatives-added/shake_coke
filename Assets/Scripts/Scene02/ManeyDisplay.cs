@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class SceneSender : MonoBehaviour
+public class ManeyDisplay : MonoBehaviour
 {
-    public string SceneName;
     // Start is called before the first frame update
+    public Text moneytext;
     void Start()
     {
 
@@ -15,9 +15,6 @@ public class SceneSender : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-    }
-    public void SceneSend(){
-        SceneManager.LoadScene(SceneName);
+        moneytext.text = Data.money.ToString("000");
     }
 }
