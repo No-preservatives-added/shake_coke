@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class Timer : MonoBehaviour
     private bool isMarginTimeUsing=false;
     private bool isRemainTimeUsing=false;
     private bool isStopTimeUsing=false;
+
+    public Text MarginTimeText;
+    public Text RemainTimeText;
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,10 +44,15 @@ public class Timer : MonoBehaviour
             MarginTime-=Time.deltaTime;
             Debug.Log("MarginTime = "+MarginTime);
             if(MarginTime<0.0f){
+                MarginTimeText.enabled = false;
                 isMarginTimeUsing=false;
                 isRemainTimeUsing=true; // 残り時間を使う
             }
         }
+
+        // テキスト表示
+        MarginTimeText.text=string.Format("{0:0}", Mathf.Ceil(MarginTime));
+        RemainTimeText.text=string.Format("残り時間 : {0:0.00} 秒", RemainTime);
         
 
     }
