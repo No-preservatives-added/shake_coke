@@ -6,22 +6,27 @@ using UnityEngine.UI;
 
 public class CountShake : MonoBehaviour
 {
-    public int shake;
+    public GameObject master;
+    public Text ShakeCount;
 
     // Start is called before the first frame update
     void Start()
     {
-        shake = 0;
+        Data.shake = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        ShakeCount.text=string.Format("{0:0}", Data.shake);
     }
 
     public void IncrementShake()
     {
-        shake += 1;
+        // 有効時間内か確認
+        if(master.GetComponent<Timer>().isRemainTimeUsing || master.GetComponent<Timer>().isStopTimeUsing){
+            Data.shake += 1;
+        }
+        
     }
 }
