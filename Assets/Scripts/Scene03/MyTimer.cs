@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Timer : MonoBehaviour
+public class MyTimer : MonoBehaviour
 {
-    // public float MarginTime=3.0f;
-    // public float RemainTime=10.0f;
-    // public float StopTime=5.0f;
     public bool isMarginTimeUsing=false;
     public bool isRemainTimeUsing=false;
     public bool isStopTimeUsing=false;
 
     public Text MarginTimeText;
     public Text RemainTimeText;
-
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +28,7 @@ public class Timer : MonoBehaviour
                 isRemainTimeUsing=false;
                 Debug.Log("発射");
                 //発射に移るメソッド
+                this.GetComponent<CameraMover>().ZoomToCokeBottle();
             }
         }else if(isStopTimeUsing){ // ストップウォッチで止めた時間
             Data.StopTime-=Time.deltaTime;
@@ -54,16 +51,7 @@ public class Timer : MonoBehaviour
         MarginTimeText.text=string.Format("{0:0}", Mathf.Ceil(Data.MarginTime));
         RemainTimeText.text=string.Format("残り時間 : {0:0.00} 秒", Data.RemainTime);
         
-
     }
 
-    void TimerStart()
-    {
 
-    }
-
-    void TimerStop()
-    {
-
-    }
 }

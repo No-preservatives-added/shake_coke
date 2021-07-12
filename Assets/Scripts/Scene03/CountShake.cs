@@ -24,7 +24,7 @@ public class CountShake : MonoBehaviour
     public void IncrementShake()
     {
         // 有効時間内か確認
-        if(master.GetComponent<Timer>().isRemainTimeUsing || master.GetComponent<Timer>().isStopTimeUsing){
+        if(master.GetComponent<MyTimer>().isRemainTimeUsing || master.GetComponent<MyTimer>().isStopTimeUsing){
             Data.shake += 1;
         }
         

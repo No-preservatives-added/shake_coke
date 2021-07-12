@@ -5,11 +5,19 @@ using DG.Tweening;
 
 public class ShakeMotion : MonoBehaviour
 {
-    
+    public GameObject master;
+    private Sequence sequence;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        sequence = DOTween.Sequence()
+            .Append(this.transform.DOMoveY(1f, 0.05f).SetEase(Ease.Linear).SetRelative())
+            .Append(this.transform.DOMoveY(-2f, 0.1f).SetEase(Ease.Linear).SetRelative())
+            .Append(this.transform.DOMoveY(1.5f, 0.05f).SetEase(Ease.Linear))
+            .Pause() // 自動再生させない
+            .SetAutoKill(false) // 繰り返し使用可能
+            .SetLink(this.gameObject); // 一緒にDestroyするgameObject
     }
 
     // Update is called once per frame
@@ -20,12 +28,8 @@ public class ShakeMotion : MonoBehaviour
 
     public void DoShake()
     {
-        // this.transform.DOMoveY(3f, 0.5f).SetRelative();
-        var sequence = DOTween.Sequence();
-        sequence.Append(this.transform.DOMoveY(1f, 0.05f));
-        sequence.Append(this.transform.DOMoveY(1f, 0.05f).SetEase(Ease.Linear).SetRelative());
-        sequence.Append(this.transform.DOMoveY(-2f, 0.1f).SetEase(Ease.Linear).SetRelative());
-        sequence.Append(this.transform.DOMoveY(1f, 0.05f).SetEase(Ease.Linear));
-        sequence.Play();
+        if(master.GetComponent<MyTimer>().isRemainTimeUsing || master.GetComponent<MyTimer>().isStopTimeUsing){
+            sequence.Restart();
+        }
     }
 }
