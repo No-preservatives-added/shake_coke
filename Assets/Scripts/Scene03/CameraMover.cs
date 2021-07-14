@@ -23,9 +23,9 @@ public class CameraMover : MonoBehaviour
 
     public void ZoomToCokeBottle()
     {
-        Vector3 targetPosition = targetObject.transform.position + new Vector3 (0.0f, 0.5f, 0.0f);
+        Vector3 targetPosition = targetObject.transform.position + new Vector3 (0.0f, 1.0f, 0.0f);
         var rotation = Quaternion.LookRotation(targetPosition - _camera.transform.position);
-        _camera.transform.DORotateQuaternion(rotation, 0.5f);
-        _camera.DOFieldOfView(15, 0.5f);
+        _camera.transform.DORotateQuaternion(rotation, 0.5f); // キャップを向く
+        _camera.DOFieldOfView(10, 0.5f).SetEase(Ease.InBack); // カメラzoom
     }
 }

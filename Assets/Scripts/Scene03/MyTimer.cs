@@ -28,7 +28,9 @@ public class MyTimer : MonoBehaviour
                 isRemainTimeUsing=false;
                 Debug.Log("発射");
                 //発射に移るメソッド
-                this.GetComponent<CameraMover>().ZoomToCokeBottle();
+                MarginTimeText.enabled = true; // "終了"表示
+                Data.MarginTime=1.0f;
+                isMarginTimeUsing=true; // 1秒待つ
             }
         }else if(isStopTimeUsing){ // ストップウォッチで止めた時間
             Data.StopTime-=Time.deltaTime;
@@ -40,15 +42,24 @@ public class MyTimer : MonoBehaviour
         }else if(isMarginTimeUsing){ // 最初のマージン
             Data.MarginTime-=Time.deltaTime;
             Debug.Log("MarginTime = "+Data.MarginTime);
-            if(Data.MarginTime<0.0f){
+            if(Data.MarginTime<0.0f && Data.RemainTime>0.0f){
                 MarginTimeText.enabled = false;
                 isMarginTimeUsing=false;
                 isRemainTimeUsing=true; // 残り時間を使う
             }
+            if(Data.MarginTime<0.0f && Data.RemainTime<0.0f){
+                MarginTimeText.enabled = false;
+                isMarginTimeUsing=false;
+                this.GetComponent<CameraMover>().ZoomToCokeBottle();
+            }
         }
 
         // テキスト表示
-        MarginTimeText.text=string.Format("{0:0}", Mathf.Ceil(Data.MarginTime));
+        if(Data.RemainTime>0.0f){
+            MarginTimeText.text=string.Format("{0:0}", Mathf.Ceil(Data.MarginTime));
+        }else{
+            MarginTimeText.text=string.Format("終了");
+        }
         RemainTimeText.text=string.Format("残り時間 : {0:0.00} 秒", Data.RemainTime);
         
     }
