@@ -206,9 +206,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 467946993}
-        m_TargetAssemblyTypeName: SceneSender, Assembly-CSharp
-        m_MethodName: SceneSend
+      - m_Target: {fileID: 467946994}
+        m_TargetAssemblyTypeName: BottleOpen, Assembly-CSharp
+        m_MethodName: RemoveCapStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -748,6 +748,7 @@ MonoBehaviour:
   _camera: {fileID: 410741816}
   targetObject: {fileID: 1133587700}
   openButton: {fileID: 22044885}
+  capObject: {fileID: 986901845}
 --- !u!1 &545276825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,7 +1171,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b2de4b6640a977f4da87a50f044926b3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

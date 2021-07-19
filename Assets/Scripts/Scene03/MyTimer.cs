@@ -50,7 +50,7 @@ public class MyTimer : MonoBehaviour
             if(Data.MarginTime<0.0f && Data.RemainTime<0.0f){
                 MarginTimeText.enabled = false;
                 isMarginTimeUsing=false;
-                this.GetComponent<BottleOpen>().ZoomToCokeBottle();
+                StartCoroutine(this.GetComponent<BottleOpen>().ZoomToCokeBottle());
             }
         }
 
