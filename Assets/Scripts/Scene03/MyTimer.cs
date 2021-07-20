@@ -47,8 +47,7 @@ public class MyTimer : MonoBehaviour
                     MarginTimeText.enabled = false;
                     isMarginTimeUsing=false;
                     isRemainTimeUsing=true; // 残り時間を使う
-                }
-                if(Data.RemainTime<0.0f){ //終了の後
+                }else{ //終了の後
                     MarginTimeText.enabled = false;
                     isMarginTimeUsing=false;
                     StartCoroutine(this.GetComponent<BottleOpen>().ZoomToCokeBottle()); //ボトル開栓アニメーション
