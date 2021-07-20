@@ -42,15 +42,17 @@ public class MyTimer : MonoBehaviour
         }else if(isMarginTimeUsing){ // 最初のマージン
             Data.MarginTime-=Time.deltaTime;
             Debug.Log("MarginTime = "+Data.MarginTime);
-            if(Data.MarginTime<0.0f && Data.RemainTime>0.0f){
-                MarginTimeText.enabled = false;
-                isMarginTimeUsing=false;
-                isRemainTimeUsing=true; // 残り時間を使う
-            }
-            if(Data.MarginTime<0.0f && Data.RemainTime<0.0f){
-                MarginTimeText.enabled = false;
-                isMarginTimeUsing=false;
-                StartCoroutine(this.GetComponent<BottleOpen>().ZoomToCokeBottle());
+            if(Data.MarginTime<0.0f){
+                if(Data.RemainTime>0.0f){ //3,2,1,0のカウントダウン後
+                    MarginTimeText.enabled = false;
+                    isMarginTimeUsing=false;
+                    isRemainTimeUsing=true; // 残り時間を使う
+                }
+                if(Data.RemainTime<0.0f){ //終了の後
+                    MarginTimeText.enabled = false;
+                    isMarginTimeUsing=false;
+                    StartCoroutine(this.GetComponent<BottleOpen>().ZoomToCokeBottle()); //ボトル開栓アニメーション
+                }
             }
         }
 
