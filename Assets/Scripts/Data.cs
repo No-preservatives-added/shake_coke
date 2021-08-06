@@ -5,6 +5,7 @@ using UnityEngine;
 public class Data
 {
     public static int money = 100;
+
     public static int CokeLevel = 1;
     public static int BottleLevel = 1;
     public static int WaterWheelLevel = 1;
@@ -15,5 +16,11 @@ public class Data
     public static int BottleCost = 1;
     public static int WaterWheelCost = 1;
     public static int DynamoCost = 1;
+    public static int shake = 0;
+    public static float MarginTime = 3.0f;
+    //public static float RemainTime=10.0f;
+    public static float RemainTime=1.0f; // デバッグ用
+    public static float StopTime=5.0f;
+
 
 }
