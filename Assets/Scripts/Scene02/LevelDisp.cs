@@ -10,10 +10,16 @@ public class LevelDisp : MonoBehaviour
     public Text BottleLevelText;
     public Text WaterWheelLevelText;
     public Text DynamoLevelText;
+    public Text ProbabilityLevelText;
+    public Text StopLevelText;
+    public Text MagnificationLevelText;
     public Text CokeCostText;
     public Text BottleCostText;
     public Text WaterWheelCostText;
     public Text DynamoCostText;
+    public Text ProbabilityCostText;
+    public Text StopCostText;
+    public Text MagnificationCostText;
     void Start()
     {
 
@@ -26,10 +32,17 @@ public class LevelDisp : MonoBehaviour
         BottleLevelText.text = Data.BottleLevel.ToString();
         WaterWheelLevelText.text = Data.WaterWheelLevel.ToString();
         DynamoLevelText.text = Data.DynamoLevel.ToString();
+        ProbabilityLevelText.text = Data.ProbabilityLevel.ToString();
+        StopLevelText.text = Data.StopLevel.ToString();
+        MagnificationLevelText.text = Data.MagnificationLevel.ToString();
+
 
         CokeCostText.text = $"NEED {Data.CokeCost.ToString()} MONEY";
         BottleCostText.text = $"NEED {Data.BottleCost.ToString()} MONEY";
         WaterWheelCostText.text = $"NEED {Data.WaterWheelCost.ToString()} MONEY";
         DynamoCostText.text = $"NEED {Data.DynamoCost.ToString()} MONEY";
+        ProbabilityCostText.text = $"NEED {Data.ProbabilityCost.ToString()} MONEY";
+        StopCostText.text = $"NEED {Data.StopCost.ToString()} MONEY";
+        MagnificationCostText.text = $"NEED {Data.MagnificationCost.ToString()} MONEY";
     }
 }
