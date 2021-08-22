@@ -12,7 +12,7 @@
 /[Uu]ser[Ss]ettings/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
-!/[Aa]ssets/**/*.meta
+/[Aa]ssets/**/*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
@@ -60,7 +60,3 @@ sysinfo.txt
 crashlytics-build.properties
 
 .vscode/
-Assets/Materials/bottlse.mat
-Assets/Materials/bottlse.mat.meta
-Assets/Materials/label.mat
-Assets/Materials/label.mat.meta
