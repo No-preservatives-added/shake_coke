@@ -12,4 +12,4 @@ https://docs.google.com/spreadsheets/d/1ueNsrtvRaA6cZZzHcOaiupbrEMEnPIaTy-mrpP-8
 
 ## 仕様について
 
-https://hackmd.io/@kiyunetsubamna/HydyCE1p_
+https://hackmd.io/k0fYY23yQa-c9-Hh6AAa9A

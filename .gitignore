@@ -60,3 +60,7 @@ sysinfo.txt
 crashlytics-build.properties
 
 .vscode/
+Assets/Materials/bottlse.mat
+Assets/Materials/bottlse.mat.meta
+Assets/Materials/label.mat
+Assets/Materials/label.mat.meta
