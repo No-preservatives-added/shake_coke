@@ -20,10 +20,12 @@ public class AppearItem : MonoBehaviour
     {
         if(!master.GetComponent<MyTimer>().isMarginTimeUsing){
             double R = UnityEngine.Random.value;
-            Debug.Log(R);
+            //Debug.Log(R);
             if(R<=Probability){
                 Item.SetActive(true);
             }
+        }else{
+            Item.SetActive(false);
         }
     }
 }

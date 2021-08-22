@@ -12,6 +12,7 @@ public class MyTimer : MonoBehaviour
     public Text MarginTimeText;
     public Text RemainTimeText;
 
+    public float StopTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +24,7 @@ public class MyTimer : MonoBehaviour
     {
         if(isRemainTimeUsing){ // 残り時間
             Data.RemainTime-=Time.deltaTime;
-            Debug.Log("RemainTime = "+Data.RemainTime);
+            //Debug.Log("RemainTime = "+Data.RemainTime);
             if(Data.RemainTime<0.0f){
                 isRemainTimeUsing=false;
                 Debug.Log("発射");
@@ -33,11 +34,12 @@ public class MyTimer : MonoBehaviour
                 isMarginTimeUsing=true; // 1秒待つ
             }
         }else if(isStopTimeUsing){ // ストップウォッチで止めた時間
-            Data.StopTime-=Time.deltaTime;
-            Debug.Log("StopTime = "+Data.StopTime);
-            if(Data.StopTime<0.0f){
+            StopTime-=Time.deltaTime;
+            Debug.Log("StopTime = "+StopTime);
+            if(StopTime<0.0f){
                 isStopTimeUsing=false;
                 isRemainTimeUsing=true; // 残り時間を使う
+                StopTime=Data.StopTime;
             }
         }else if(isMarginTimeUsing){ // 最初のマージン
             Data.MarginTime-=Time.deltaTime;
@@ -62,7 +64,7 @@ public class MyTimer : MonoBehaviour
             MarginTimeText.text=string.Format("終了");
         }
         RemainTimeText.text=string.Format("残り時間 : {0:0.00} 秒", Data.RemainTime);
-        
+
     }
 
 
