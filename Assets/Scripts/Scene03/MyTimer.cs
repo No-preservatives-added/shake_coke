@@ -15,25 +15,29 @@ public class MyTimer : MonoBehaviour
     public GameObject StopTimeObject;
 
     public float StopTime;
+    private float RemainTime;
+    private float MarginTime;
     // Start is called before the first frame update
     void Start()
     {
         isMarginTimeUsing=true;
         StopTimeObject.SetActive(false);
+        RemainTime=Data.RemainTime;
+        MarginTime=Data.MarginTime;
     }
 
     // Update is called once per frame
     void Update()
     {
         if(isRemainTimeUsing){ // 残り時間
-            Data.RemainTime-=Time.deltaTime;
+            RemainTime-=Time.deltaTime;
             //Debug.Log("RemainTime = "+Data.RemainTime);
-            if(Data.RemainTime<0.0f){
+            if(RemainTime<0.0f){
                 isRemainTimeUsing=false;
                 Debug.Log("発射");
                 //発射に移るメソッド
                 MarginTimeText.enabled = true; // "終了"表示
-                Data.MarginTime=1.0f;
+                MarginTime=1.0f;
                 isMarginTimeUsing=true; // 1秒待つ
             }
         }else if(isStopTimeUsing){ // ストップウォッチで止めた時間
@@ -45,10 +49,10 @@ public class MyTimer : MonoBehaviour
                 StopTime=Data.StopTime;
             }
         }else if(isMarginTimeUsing){ // 最初のマージン
-            Data.MarginTime-=Time.deltaTime;
-            Debug.Log("MarginTime = "+Data.MarginTime);
-            if(Data.MarginTime<0.0f){
-                if(Data.RemainTime>0.0f){ //3,2,1,0のカウントダウン後
+            MarginTime-=Time.deltaTime;
+            Debug.Log("MarginTime = "+MarginTime);
+            if(MarginTime<0.0f){
+                if(RemainTime>0.0f){ //3,2,1,0のカウントダウン後
                     MarginTimeText.enabled = false;
                     isMarginTimeUsing=false;
                     isRemainTimeUsing=true; // 残り時間を使う
@@ -61,12 +65,12 @@ public class MyTimer : MonoBehaviour
         }
 
         // テキスト表示
-        if(Data.RemainTime>0.0f){
-            MarginTimeText.text=string.Format("{0:0}", Mathf.Ceil(Data.MarginTime));
+        if(RemainTime>0.0f){
+            MarginTimeText.text=string.Format("{0:0}", Mathf.Ceil(MarginTime));
         }else{
             MarginTimeText.text=string.Format("終了");
         }
-        RemainTimeText.text=string.Format("残り時間 : {0:0.00} 秒", Data.RemainTime);
+        RemainTimeText.text=string.Format("残り時間 : {0:0.00} 秒", RemainTime);
 
         if(isStopTimeUsing){
             StopTimeObject.SetActive(true);
