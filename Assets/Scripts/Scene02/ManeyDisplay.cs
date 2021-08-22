@@ -15,6 +15,6 @@ public class ManeyDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moneytext.text = Data.money.ToString("000");
+        moneytext.text = Data.money.ToString("0");
     }
 }
