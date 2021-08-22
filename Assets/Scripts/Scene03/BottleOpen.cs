@@ -10,6 +10,7 @@ public class BottleOpen : MonoBehaviour
     [SerializeField] private GameObject targetObject;
     [SerializeField] private GameObject openButton;
     [SerializeField] private GameObject capObject;
+    [SerializeField] private GameObject waterwheelObject;
 
     // Start is called before the first frame update
     void Start()
@@ -32,18 +33,28 @@ public class BottleOpen : MonoBehaviour
         openButton.SetActive(true);
     }
 
-    public void RemoveCapStart(){ // ボタンが押されたらコルーチン実行
-        StartCoroutine(RemoveCap());
+    public void RemoveCapStart(){ // ボタンが押された
+        StartCoroutine(RemoveCap());// コルーチン実行
+        StartCoroutine(RotateWaterwheel(5.0f));
     }
     public IEnumerator RemoveCap(){
+        openButton.SetActive(false);
         capObject.transform.DORotate(new Vector3(0,-1440,0), 1.5f, RotateMode.LocalAxisAdd).SetEase(Ease.Linear); //キャップ回転
-        capObject.transform.DOJump(new Vector3(0.75f, -1.0f, 0),1.5f,1,1.5f).SetEase(Ease.Linear).SetRelative(); //キャップジャンプ
-        //ホワイトアウト？
-        yield return new WaitForSeconds(1.5f);
-        this.gameObject.GetComponent<SceneSender>().SceneSend(); //シーン遷移
+        capObject.transform.DOJump(new Vector3(0.75f, -1.0f, 0),1.5f, 1, 1.5f).SetEase(Ease.Linear).SetRelative(); //キャップジャンプ
+        targetObject.transform.DORotate(new Vector3(0, 0, 90), 1.0f, RotateMode.LocalAxisAdd).SetEase(Ease.Linear); //ボトル横向き
+        Vector3 targetPosition = targetObject.transform.position + new Vector3 (-2.0f, 0.0f, 0.0f); //カメラが向く方向をボトルの2だけ左に設定
+        var rotation = Quaternion.LookRotation(targetPosition - _camera.transform.position); //現在のカメラの方向とターゲットの方向の差
+        _camera.transform.DORotateQuaternion(rotation, 1.0f); // 指定方向を向く
+        _camera.DOFieldOfView(45, 1.0f).SetEase(Ease.OutSine); // カメラzoomアウト
+        waterwheelObject.transform.DOMove(new Vector3(-2.5f, 2.0f, 0), 1.0f).SetEase(Ease.Linear); // 水車近付く
+        yield return new WaitForSeconds(2.0f);
+        //this.gameObject.GetComponent<SceneSender>().SceneSend(); //シーン遷移
+    }
+    public IEnumerator RotateWaterwheel(float timelength){
+
+        yield return new WaitForSeconds(timelength);
     }
 
-    
     private IEnumerator DelayCoroutine(float waittime){
         yield return new WaitForSeconds(waittime);
     }

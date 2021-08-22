@@ -9,8 +9,9 @@ public class MyTimer : MonoBehaviour
     public bool isRemainTimeUsing=false;
     public bool isStopTimeUsing=false;
 
-    public Text MarginTimeText;
-    public Text RemainTimeText;
+    [SerializeField] private Text MarginTimeText;
+    [SerializeField] private Text RemainTimeText;
+    [SerializeField] private GameObject PushButton;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +51,7 @@ public class MyTimer : MonoBehaviour
                 }else{ //終了の後
                     MarginTimeText.enabled = false;
                     isMarginTimeUsing=false;
+                    PushButton.SetActive(false);// Pushボタン消去
                     StartCoroutine(this.GetComponent<BottleOpen>().ZoomToCokeBottle()); //ボトル開栓アニメーション
                 }
             }
