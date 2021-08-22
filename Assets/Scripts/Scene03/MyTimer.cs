@@ -11,12 +11,15 @@ public class MyTimer : MonoBehaviour
 
     public Text MarginTimeText;
     public Text RemainTimeText;
+    public Text StopTimeText;
+    public GameObject StopTimeObject;
 
     public float StopTime;
     // Start is called before the first frame update
     void Start()
     {
         isMarginTimeUsing=true;
+        StopTimeObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -65,6 +68,12 @@ public class MyTimer : MonoBehaviour
         }
         RemainTimeText.text=string.Format("残り時間 : {0:0.00} 秒", Data.RemainTime);
 
+        if(isStopTimeUsing){
+            StopTimeObject.SetActive(true);
+            StopTimeText.text=string.Format("停止残り時間 : {0:0.00} 秒", StopTime);
+        }else{
+            StopTimeObject.SetActive(false);
+        }
     }
 
 
