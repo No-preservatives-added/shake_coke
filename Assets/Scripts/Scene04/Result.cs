@@ -18,13 +18,14 @@ public class Result : MonoBehaviour
         WaitTime = 0.0f;
         CurrentMoney = 0;
         InternalPressure = Math.Pow(1.1, (Data.CokeLevel - 1)) * Data.ShakeCount;
-        ElectricPowerGeneration = InternalPressure * ((double)(Data.WaterWheelLevel) / 100) * Math.Pow(1.1, (Data.DynamoLevel - 1));
+        ElectricPowerGeneration = InternalPressure * ((double)(Data.WaterWheelLevel) / 100) * Math.Pow(1.1, (Data.DynamoLevel - 1))*10.0;
         CurrentElectricPowerGeneration = ElectricPowerGeneration;
-        Money = (int)(100 * ElectricPowerGeneration);
+        Money = (int)(10 * ElectricPowerGeneration);
         MoneyText.text = string.Format("獲得金額:{0}円", CurrentMoney);
         ElectricPowerGenerationText.text = string.Format("発電量:{0}kw", CurrentElectricPowerGeneration);
         ShakeCountText.text = string.Format("振った回数:{0}回", Data.ShakeCount);
-        InternalPressureText.text = string.Format("最終的な内圧:{0}Pa", InternalPressure);
+        InternalPressureText.text = string.Format("最終的な内圧:{0:0.000}Pa", InternalPressure);
+        SecondText.text = string.Format("振った秒数:{0:0.00}秒",Data.ShakeTime);
 
         Data.money += Money;
 
