@@ -37,9 +37,9 @@ public class Data
 
     public static int ShakeCount = 0;
     public static float MarginTime = 3.0f;
-    //public static float RemainTime=10.0f;
-    public static float RemainTime=1.0f; // デバッグ用
-    public static float StopTime=5.0f;
+    public static float RemainTime = 10.0f;
+    //public static float RemainTime=1.0f; // デバッグ用
+    public static float StopTime = 5.0f;
 
 
 }

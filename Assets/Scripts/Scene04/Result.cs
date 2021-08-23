@@ -7,9 +7,9 @@ using UnityEngine.UI;
 
 public class Result : MonoBehaviour
 {
-    public Text MoneyText, ElectricPowerGenerationText;
-    private int Money, CurrentMoney;
-    private double ElectricPowerGeneration, InternalPressure;
+    public Text MoneyText, ElectricPowerGenerationText, InternalPressureText, SecondText, ShakeCountText;
+    private int Money;
+    private double ElectricPowerGeneration, InternalPressure, CurrentMoney;
     private double CurrentElectricPowerGeneration;
     private float WaitTime;
     // Start is called before the first frame update
@@ -20,10 +20,11 @@ public class Result : MonoBehaviour
         InternalPressure = Math.Pow(1.1, (Data.CokeLevel - 1)) * Data.ShakeCount;
         ElectricPowerGeneration = InternalPressure * ((double)(Data.WaterWheelLevel) / 100) * Math.Pow(1.1, (Data.DynamoLevel - 1));
         CurrentElectricPowerGeneration = ElectricPowerGeneration;
-        Money = (int)(10000000 * ElectricPowerGeneration);
+        Money = (int)(100 * ElectricPowerGeneration);
         MoneyText.text = string.Format("獲得金額:{0}円", CurrentMoney);
         ElectricPowerGenerationText.text = string.Format("発電量:{0}kw", CurrentElectricPowerGeneration);
-
+        ShakeCountText.text = string.Format("振った回数:{0}回", Data.ShakeCount);
+        InternalPressureText.text = string.Format("最終的な内圧:{0}Pa", InternalPressure);
 
         Data.money += Money;
 
@@ -48,7 +49,7 @@ public class Result : MonoBehaviour
             }
             if (CurrentMoney < Money)
             {
-                CurrentMoney += (int)(Money * (Time.deltaTime / 2.0f));
+                CurrentMoney += Money * (Time.deltaTime / 2.0f);
             }
             if (CurrentMoney >= Money)
             {
@@ -57,7 +58,7 @@ public class Result : MonoBehaviour
         }
 
 
-        MoneyText.text = string.Format("獲得金額:{0}円", CurrentMoney);
+        MoneyText.text = string.Format("獲得金額:{0:0}円", CurrentMoney);
 
         ElectricPowerGenerationText.text = string.Format("発電量:{0:0.00}kw", CurrentElectricPowerGeneration);
 
