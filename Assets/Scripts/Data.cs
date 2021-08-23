@@ -35,7 +35,7 @@ public class Data
     public static int StopCost = DefaultStopCost;
     public static int MagnificationCost = DefaultMagnificationCost;
 
-    public static int shake = 0;
+    public static int ShakeCount = 0;
     public static float MarginTime = 3.0f;
     //public static float RemainTime=10.0f;
     public static float RemainTime=1.0f; // デバッグ用
