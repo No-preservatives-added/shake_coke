@@ -16,7 +16,7 @@ public class Data
 
 
 
-    public static int money = 100000;
+    public static int money = 0;
 
     public static int CokeLevel = 1;
     public static int BottleLevel = 1;
@@ -35,11 +35,12 @@ public class Data
     public static int StopCost = DefaultStopCost;
     public static int MagnificationCost = DefaultMagnificationCost;
 
-    public static int shake = 0;
+    public static int ShakeCount = 0;
+    public static float ShakeTime = 0.0f;
     public static float MarginTime = 3.0f;
-    //public static float RemainTime=10.0f;
-    public static float RemainTime=1.0f; // デバッグ用
-    public static float StopTime=5.0f;
+    public static float RemainTime = 10.0f;
+    //public static float RemainTime=1.0f; // デバッグ用
+    public static float StopTime = 5.0f;
 
 
 }

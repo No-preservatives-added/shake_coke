@@ -18,12 +18,14 @@ public class MyTimer : MonoBehaviour
     private float RemainTime;
     private float MarginTime;
     // Start is called before the first frame update
+    private float ShakeTime;
     void Start()
     {
         isMarginTimeUsing=true;
         StopTimeObject.SetActive(false);
-        RemainTime=Data.RemainTime;
+        RemainTime=10.0f+0.1f*(Data.BottleLevel-1);
         MarginTime=Data.MarginTime;
+        ShakeTime = 0.0f;
     }
 
     // Update is called once per frame
@@ -31,6 +33,7 @@ public class MyTimer : MonoBehaviour
     {
         if(isRemainTimeUsing){ // 残り時間
             RemainTime-=Time.deltaTime;
+            ShakeTime += Time.deltaTime;
             //Debug.Log("RemainTime = "+Data.RemainTime);
             if(RemainTime<0.0f){
                 isRemainTimeUsing=false;
@@ -42,6 +45,7 @@ public class MyTimer : MonoBehaviour
             }
         }else if(isStopTimeUsing){ // ストップウォッチで止めた時間
             StopTime-=Time.deltaTime;
+            ShakeTime += Time.deltaTime;
             Debug.Log("StopTime = "+StopTime);
             if(StopTime<0.0f){
                 isStopTimeUsing=false;
@@ -57,8 +61,10 @@ public class MyTimer : MonoBehaviour
                     isMarginTimeUsing=false;
                     isRemainTimeUsing=true; // 残り時間を使う
                 }else{ //終了の後
+                    RemainTime = 0.0f;
                     MarginTimeText.enabled = false;
                     isMarginTimeUsing=false;
+                    Data.ShakeTime = ShakeTime;
                     StartCoroutine(this.GetComponent<BottleOpen>().ZoomToCokeBottle()); //ボトル開栓アニメーション
                 }
             }
