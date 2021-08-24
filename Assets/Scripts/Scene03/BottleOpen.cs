@@ -11,6 +11,7 @@ public class BottleOpen : MonoBehaviour
     [SerializeField] private GameObject openButton;
     [SerializeField] private GameObject capObject;
     [SerializeField] private GameObject waterwheelObject;
+    [SerializeField] private float shakeSeconds=5.0f; 
 
     // Start is called before the first frame update
     void Start()
@@ -34,10 +35,27 @@ public class BottleOpen : MonoBehaviour
     }
 
     public void RemoveCapStart(){ // ボタンが押された
-        StartCoroutine(RemoveCap());// コルーチン実行
-        StartCoroutine(RotateWaterwheel(5.0f));
+        StartCoroutine(RotateMotion());// コルーチン実行
     }
-    public IEnumerator RemoveCap(){
+
+    IEnumerator RotateMotion(){
+        Debug.Log("RemoveCap");
+        yield return StartCoroutine(RemoveCap());// コルーチン実行
+        while (shakeSeconds>0.0f)
+        {   
+            if (shakeSeconds>0.2f){
+                yield return StartCoroutine(RotateWaterwheel(0));
+            }else{
+                yield return StartCoroutine(RotateWaterwheel(1));
+            }
+            shakeSeconds-=0.2f;
+            Debug.Log("shakeSeconds= "+shakeSeconds);
+        }
+        Debug.Log("show_result");
+        yield return null;
+    }
+    
+    IEnumerator RemoveCap(){
         openButton.SetActive(false);
         capObject.transform.DORotate(new Vector3(0,-1440,0), 1.5f, RotateMode.LocalAxisAdd).SetEase(Ease.Linear); //キャップ回転
         capObject.transform.DOJump(new Vector3(0.75f, -1.0f, 0),1.5f, 1, 1.5f).SetEase(Ease.Linear).SetRelative(); //キャップジャンプ
@@ -50,9 +68,14 @@ public class BottleOpen : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         //this.gameObject.GetComponent<SceneSender>().SceneSend(); //シーン遷移
     }
-    public IEnumerator RotateWaterwheel(float timelength){
-
-        yield return new WaitForSeconds(timelength);
+    IEnumerator RotateWaterwheel(int phase){
+        if (phase == 0){
+            waterwheelObject.transform.DORotate(new Vector3(0,0,-180), 0.2f, RotateMode.LocalAxisAdd).SetEase(Ease.Linear); //水車回転継続
+        }else if (phase == 1){
+            waterwheelObject.transform.DORotate(new Vector3(0,0,-900), 2.0f, RotateMode.LocalAxisAdd); //水車回転終了
+        }
+        
+        yield return new WaitForSeconds(0.2f);
     }
 
     private IEnumerator DelayCoroutine(float waittime){
