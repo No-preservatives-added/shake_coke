@@ -11,7 +11,7 @@ public class BottleOpen : MonoBehaviour
     [SerializeField] private GameObject openButton;
     [SerializeField] private GameObject capObject;
     [SerializeField] private GameObject waterwheelObject;
-    [SerializeField] private float shakeSeconds=5.0f; 
+    [SerializeField] private float shakeSeconds=5.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +52,7 @@ public class BottleOpen : MonoBehaviour
             Debug.Log("shakeSeconds= "+shakeSeconds);
         }
         Debug.Log("show_result");
+        this.gameObject.GetComponent<SceneSender>().SceneSend(); //シーン遷移
         yield return null;
     }
     
@@ -71,11 +72,13 @@ public class BottleOpen : MonoBehaviour
     IEnumerator RotateWaterwheel(int phase){
         if (phase == 0){
             waterwheelObject.transform.DORotate(new Vector3(0,0,-180), 0.2f, RotateMode.LocalAxisAdd).SetEase(Ease.Linear); //水車回転継続
+            yield return new WaitForSeconds(0.2f);
         }else if (phase == 1){
             waterwheelObject.transform.DORotate(new Vector3(0,0,-900), 2.0f, RotateMode.LocalAxisAdd); //水車回転終了
+            yield return new WaitForSeconds(2.0f);
         }
         
-        yield return new WaitForSeconds(0.2f);
+        
     }
 
     private IEnumerator DelayCoroutine(float waittime){

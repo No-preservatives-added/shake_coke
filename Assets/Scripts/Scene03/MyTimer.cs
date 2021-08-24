@@ -9,16 +9,12 @@ public class MyTimer : MonoBehaviour
     public bool isRemainTimeUsing=false;
     public bool isStopTimeUsing=false;
 
-<<<<<<< HEAD
-    [SerializeField] private Text MarginTimeText;
-    [SerializeField] private Text RemainTimeText;
-    [SerializeField] private GameObject PushButton;
-=======
     public Text MarginTimeText;
     public Text RemainTimeText;
     public Text StopTimeText;
     public GameObject StopTimeObject;
->>>>>>> master
+    [SerializeField] private GameObject PushButton;
+
 
     public float StopTime;
     private float RemainTime;
@@ -70,11 +66,8 @@ public class MyTimer : MonoBehaviour
                     RemainTime = 0.0f;
                     MarginTimeText.enabled = false;
                     isMarginTimeUsing=false;
-<<<<<<< HEAD
                     PushButton.SetActive(false);// Pushボタン消去
-=======
                     Data.ShakeTime = ShakeTime;
->>>>>>> master
                     StartCoroutine(this.GetComponent<BottleOpen>().ZoomToCokeBottle()); //ボトル開栓アニメーション
                 }
             }
