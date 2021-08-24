@@ -9,62 +9,91 @@ public class MyTimer : MonoBehaviour
     public bool isRemainTimeUsing=false;
     public bool isStopTimeUsing=false;
 
+<<<<<<< HEAD
     [SerializeField] private Text MarginTimeText;
     [SerializeField] private Text RemainTimeText;
     [SerializeField] private GameObject PushButton;
+=======
+    public Text MarginTimeText;
+    public Text RemainTimeText;
+    public Text StopTimeText;
+    public GameObject StopTimeObject;
+>>>>>>> master
 
+    public float StopTime;
+    private float RemainTime;
+    private float MarginTime;
     // Start is called before the first frame update
+    private float ShakeTime;
     void Start()
     {
         isMarginTimeUsing=true;
+        StopTimeObject.SetActive(false);
+        RemainTime=10.0f+0.1f*(Data.BottleLevel-1);
+        MarginTime=Data.MarginTime;
+        ShakeTime = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
         if(isRemainTimeUsing){ // 残り時間
-            Data.RemainTime-=Time.deltaTime;
-            Debug.Log("RemainTime = "+Data.RemainTime);
-            if(Data.RemainTime<0.0f){
+            RemainTime-=Time.deltaTime;
+            ShakeTime += Time.deltaTime;
+            //Debug.Log("RemainTime = "+Data.RemainTime);
+            if(RemainTime<0.0f){
                 isRemainTimeUsing=false;
                 Debug.Log("発射");
                 //発射に移るメソッド
                 MarginTimeText.enabled = true; // "終了"表示
-                Data.MarginTime=1.0f;
+                MarginTime=1.0f;
                 isMarginTimeUsing=true; // 1秒待つ
             }
         }else if(isStopTimeUsing){ // ストップウォッチで止めた時間
-            Data.StopTime-=Time.deltaTime;
-            Debug.Log("StopTime = "+Data.StopTime);
-            if(Data.StopTime<0.0f){
+            StopTime-=Time.deltaTime;
+            ShakeTime += Time.deltaTime;
+            Debug.Log("StopTime = "+StopTime);
+            if(StopTime<0.0f){
                 isStopTimeUsing=false;
                 isRemainTimeUsing=true; // 残り時間を使う
+                StopTime=Data.StopTime;
             }
         }else if(isMarginTimeUsing){ // 最初のマージン
-            Data.MarginTime-=Time.deltaTime;
-            Debug.Log("MarginTime = "+Data.MarginTime);
-            if(Data.MarginTime<0.0f){
-                if(Data.RemainTime>0.0f){ //3,2,1,0のカウントダウン後
+            MarginTime-=Time.deltaTime;
+            Debug.Log("MarginTime = "+MarginTime);
+            if(MarginTime<0.0f){
+                if(RemainTime>0.0f){ //3,2,1,0のカウントダウン後
                     MarginTimeText.enabled = false;
                     isMarginTimeUsing=false;
                     isRemainTimeUsing=true; // 残り時間を使う
                 }else{ //終了の後
+                    RemainTime = 0.0f;
                     MarginTimeText.enabled = false;
                     isMarginTimeUsing=false;
+<<<<<<< HEAD
                     PushButton.SetActive(false);// Pushボタン消去
+=======
+                    Data.ShakeTime = ShakeTime;
+>>>>>>> master
                     StartCoroutine(this.GetComponent<BottleOpen>().ZoomToCokeBottle()); //ボトル開栓アニメーション
                 }
             }
         }
 
         // テキスト表示
-        if(Data.RemainTime>0.0f){
-            MarginTimeText.text=string.Format("{0:0}", Mathf.Ceil(Data.MarginTime));
+        if(RemainTime>0.0f){
+            MarginTimeText.text=string.Format("{0:0}", Mathf.Ceil(MarginTime));
         }else{
             MarginTimeText.text=string.Format("終了");
         }
-        RemainTimeText.text=string.Format("残り時間 : {0:0.00} 秒", Data.RemainTime);
-        
+        RemainTimeText.text=string.Format("残り時間 : {0:0.00} 秒", RemainTime);
+
+        if(isStopTimeUsing){
+            StopTimeObject.SetActive(true);
+            StopTimeText.text=string.Format("停止残り時間 : {0:0.00} 秒", StopTime);
+        }else{
+            StopTimeObject.SetActive(false);
+        }
     }
 
 

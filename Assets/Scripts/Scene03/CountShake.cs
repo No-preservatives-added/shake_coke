@@ -12,20 +12,20 @@ public class CountShake : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Data.shake = 0;
+        Data.ShakeCount = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        ShakeCount.text=string.Format("{0:0}", Data.shake);
+        ShakeCount.text=string.Format("{0:0}", Data.ShakeCount);
     }
 
     public void IncrementShake()
     {
         // 有効時間内か確認
         if(master.GetComponent<MyTimer>().isRemainTimeUsing || master.GetComponent<MyTimer>().isStopTimeUsing){
-            Data.shake += 1;
+            Data.ShakeCount += 1;
         }
         
     }
