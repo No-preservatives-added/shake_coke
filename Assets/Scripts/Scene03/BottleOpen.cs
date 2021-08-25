@@ -64,17 +64,22 @@ public class BottleOpen : MonoBehaviour
         Vector3 targetPosition = targetObject.transform.position + new Vector3 (-2.0f, 0.0f, 0.0f); //カメラが向く方向をボトルの2だけ左に設定
         var rotation = Quaternion.LookRotation(targetPosition - _camera.transform.position); //現在のカメラの方向とターゲットの方向の差
         _camera.transform.DORotateQuaternion(rotation, 1.0f); // 指定方向を向く
-        _camera.DOFieldOfView(45, 1.0f).SetEase(Ease.OutSine); // カメラzoomアウト
-        waterwheelObject.transform.DOMove(new Vector3(-2.5f, 2.0f, 0), 1.0f).SetEase(Ease.Linear); // 水車近付く
+        _camera.DOFieldOfView(50, 1.0f).SetEase(Ease.OutSine); // カメラzoomアウト
+        waterwheelObject.transform.DOMove(new Vector3(-2.8f, 2.0f, 0), 1.0f).SetEase(Ease.Linear); // 水車近付く
         yield return new WaitForSeconds(2.0f);
         //this.gameObject.GetComponent<SceneSender>().SceneSend(); //シーン遷移
     }
     IEnumerator RotateWaterwheel(int phase){
         if (phase == 0){
+            _camera.transform.position=new Vector3(0f, 1f, -10f); //元の位置に戻す
             waterwheelObject.transform.DORotate(new Vector3(0,0,-180), 0.2f, RotateMode.LocalAxisAdd).SetEase(Ease.Linear); //水車回転継続
+            _camera.DOFieldOfView(35, 0.2f); //zoom
+            _camera.transform.DOShakePosition(1f, 0.1f, 30, 1, false, false);
             yield return new WaitForSeconds(0.2f);
         }else if (phase == 1){
             waterwheelObject.transform.DORotate(new Vector3(0,0,-900), 2.0f, RotateMode.LocalAxisAdd); //水車回転終了
+            _camera.DOFieldOfView(50, 2.0f); //zoom
+            _camera.transform.DOMove(new Vector3(0f, 1f, -10f), 2.0f); //元の位置に戻す
             yield return new WaitForSeconds(2.0f);
         }
         

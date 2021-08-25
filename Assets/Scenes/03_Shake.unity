@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -286,7 +286,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 632898102}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.545}
@@ -1086,9 +1086,9 @@ MonoBehaviour:
   isStopTimeUsing: 0
   MarginTimeText: {fileID: 368143439}
   RemainTimeText: {fileID: 957851833}
-  PushButton: {fileID: 1710462624}
   StopTimeText: {fileID: 110276092}
   StopTimeObject: {fileID: 110276090}
+  PushButton: {fileID: 1710462624}
   StopTime: 5
 --- !u!114 &467946993
 MonoBehaviour:
@@ -1120,6 +1120,7 @@ MonoBehaviour:
   openButton: {fileID: 22044885}
   capObject: {fileID: 986901845}
   waterwheelObject: {fileID: 1186235286}
+  shakeSeconds: 5
 --- !u!114 &467946995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1428,6 +1429,7 @@ GameObject:
   - component: {fileID: 786663218}
   - component: {fileID: 786663223}
   - component: {fileID: 786663222}
+  - component: {fileID: 786663224}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1554,6 +1556,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &786663224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786663217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190bf093b113de34c8e9dc02511cb07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &957851831
 GameObject:
   m_ObjectHideFlags: 0
