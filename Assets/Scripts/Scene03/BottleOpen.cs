@@ -12,6 +12,7 @@ public class BottleOpen : MonoBehaviour
     [SerializeField] private GameObject capObject;
     [SerializeField] private GameObject waterwheelObject;
     [SerializeField] private float shakeSeconds=5.0f;
+    [SerializeField] private GameObject waterParticle;
 
     // Start is called before the first frame update
     void Start()
@@ -67,17 +68,18 @@ public class BottleOpen : MonoBehaviour
         _camera.DOFieldOfView(50, 1.0f).SetEase(Ease.OutSine); // カメラzoomアウト
         waterwheelObject.transform.DOMove(new Vector3(-2.8f, 2.0f, 0), 1.0f).SetEase(Ease.Linear); // 水車近付く
         yield return new WaitForSeconds(2.0f);
-        //this.gameObject.GetComponent<SceneSender>().SceneSend(); //シーン遷移
     }
     IEnumerator RotateWaterwheel(int phase){
         if (phase == 0){
             _camera.transform.position=new Vector3(0f, 1f, -10f); //元の位置に戻す
             waterwheelObject.transform.DORotate(new Vector3(0,0,-180), 0.2f, RotateMode.LocalAxisAdd).SetEase(Ease.Linear); //水車回転継続
+            waterParticle.gameObject.SetActive(true);// 水滴パーティクルON
             _camera.DOFieldOfView(35, 0.2f); //zoom
-            _camera.transform.DOShakePosition(1f, 0.1f, 30, 1, false, false);
+            _camera.transform.DOShakePosition(1f, 0.1f, 30, 1, false, false); // カメラ揺れ
             yield return new WaitForSeconds(0.2f);
         }else if (phase == 1){
             waterwheelObject.transform.DORotate(new Vector3(0,0,-900), 2.0f, RotateMode.LocalAxisAdd); //水車回転終了
+            waterParticle.gameObject.SetActive(false);// 水滴パーティクルOFF
             _camera.DOFieldOfView(50, 2.0f); //zoom
             _camera.transform.DOMove(new Vector3(0f, 1f, -10f), 2.0f); //元の位置に戻す
             yield return new WaitForSeconds(2.0f);
