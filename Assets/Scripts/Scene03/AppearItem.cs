@@ -18,7 +18,7 @@ public class AppearItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!master.GetComponent<MyTimer>().isMarginTimeUsing){
+        if(master.GetComponent<MyTimer>().isRemainTimeUsing || master.GetComponent<MyTimer>().isStopTimeUsing){
             double R = UnityEngine.Random.value;
             //Debug.Log(R);
             if(R<=Probability){
