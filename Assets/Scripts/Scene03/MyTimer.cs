@@ -25,7 +25,7 @@ public class MyTimer : MonoBehaviour
     {
         isMarginTimeUsing=true;
         StopTimeObject.SetActive(false);
-        RemainTime=10.0f+0.1f*(Data.BottleLevel-1);
+        RemainTime=3.0f+0.1f*(Data.BottleLevel-1);
         MarginTime=Data.MarginTime;
         ShakeTime = 0.0f;
     }
