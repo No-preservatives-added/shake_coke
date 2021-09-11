@@ -6,9 +6,9 @@ public class Data
 {
     //定数の定義
     public static int DefaultCokeCost = 100;
-    public static int DefaultBottleCost = 100;
-    public static int DefaultWaterWheelCost = 1000;
-    public static int DefaultDynamoCost = 100;
+    public static int DefaultBottleCost = 200;
+    public static int DefaultWaterWheelCost = 50;
+    public static int DefaultDynamoCost = 400;
     public static int DefaultProbabilityCost = 100000;
     public static int DefaultStopCost = 50000;
     public static int DefaultMagnificationCost = 1000000;
