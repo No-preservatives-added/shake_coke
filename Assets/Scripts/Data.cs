@@ -5,7 +5,7 @@ using UnityEngine;
 public class Data
 {
     //定数の定義
-    public static int DefaultCokeCost = 100;
+    public static int DefaultCokeCost = 5;
     public static int DefaultBottleCost = 200;
     public static int DefaultWaterWheelCost = 50;
     public static int DefaultDynamoCost = 400;
