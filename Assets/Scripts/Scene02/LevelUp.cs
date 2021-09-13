@@ -17,7 +17,16 @@ public class LevelUp : MonoBehaviour
     {
         Data.BottleLevel++;
         Data.money -= Data.BottleCost;
+
+        if(Data.BottleLevel < 11){
         Data.BottleCost = (int)(Data.DefaultBottleCost*(1+0.2*(Data.BottleLevel-1)));
+        }
+
+        else{
+        Data.BottleCost = (int)(Data.DefaultBottleCost*(1+0.7*(Data.BottleLevel-1)));
+        }
+    
+    
     }
     public void WaterWheelLevelUp()
     {
