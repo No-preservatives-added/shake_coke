@@ -11,7 +11,7 @@ public class LevelUp : MonoBehaviour
     {
         Data.CokeLevel++;
         Data.money -= Data.CokeCost;
-        Data.CokeCost = (int)(Data.DefaultCokeCost*Math.Pow(1.15,(Data.CokeLevel-1)));
+        Data.CokeCost = (int)(Data.DefaultCokeCost*Math.Pow(1.05,(Data.CokeLevel-1)));
     }
     public void BottleLevelUp()
     {
@@ -19,14 +19,21 @@ public class LevelUp : MonoBehaviour
         Data.money -= Data.BottleCost;
 
         if(Data.BottleLevel < 11){
-        Data.BottleCost = (int)(Data.DefaultBottleCost*(1+0.2*(Data.BottleLevel-1)));
+        Data.BottleCost = (int)(Data.DefaultBottleCost*(1+0.25*(Data.BottleLevel-1)));
+        }
+
+        else if(Data.BottleLevel < 105){
+        Data.BottleCost = (int)(Data.DefaultBottleCost*(1+0.5*(Data.BottleLevel-1))-500);
+        }
+
+        else if(Data.BottleLevel < 195){
+        Data.BottleCost = (int)(Data.DefaultBottleCost*(1+5.0*(Data.BottleLevel-1))-93200);
         }
 
         else{
-        Data.BottleCost = (int)(Data.DefaultBottleCost*(1+0.7*(Data.BottleLevel-1)));
+        Data.BottleCost = (int)(Data.DefaultBottleCost*Math.Pow(1.05,(Data.BottleLevel-1))-2470798);
         }
-    
-    
+        
     }
     public void WaterWheelLevelUp()
     {
