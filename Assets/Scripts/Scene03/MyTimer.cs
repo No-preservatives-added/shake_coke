@@ -25,7 +25,47 @@ public class MyTimer : MonoBehaviour
     {
         isMarginTimeUsing=true;
         StopTimeObject.SetActive(false);
-        RemainTime=3.0f+1.0f*(Data.BottleLevel-1);
+        
+        if(Data.BottleLevel < 7){
+            RemainTime=3.0f+1.0f*(Data.BottleLevel-1);
+        }
+        
+        else if(Data.BottleLevel < 17){
+            RemainTime=8.0f+0.9f*(Data.BottleLevel-6);
+        } 
+        
+        else if(Data.BottleLevel < 27){
+            RemainTime=17.0f+0.8f*(Data.BottleLevel-16);
+        }
+
+        else if(Data.BottleLevel < 47){
+            RemainTime=25.0f+0.7f*(Data.BottleLevel-26);
+        }
+
+        else if(Data.BottleLevel < 67){
+            RemainTime=39.0f+0.6f*(Data.BottleLevel-46);
+        }
+
+        else if(Data.BottleLevel < 107){
+            RemainTime=51.0f+0.5f*(Data.BottleLevel-66);
+        }
+
+        else if(Data.BottleLevel < 147){
+            RemainTime=71.0f+0.4f*(Data.BottleLevel-106);
+        }
+
+        else if(Data.BottleLevel < 227){
+            RemainTime=87.0f+0.3f*(Data.BottleLevel-146);
+        }
+
+        else if(Data.BottleLevel < 307){
+            RemainTime=111.0f+0.2f*(Data.BottleLevel-226);
+        }
+
+        else{
+            RemainTime=137.0f+0.1f*(Data.BottleLevel-1);
+        }
+
         MarginTime=Data.MarginTime;
         ShakeTime = 0.0f;
     }

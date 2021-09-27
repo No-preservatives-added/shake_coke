@@ -18,7 +18,19 @@ public class Result : MonoBehaviour
         WaitTime = 0.0f;
         CurrentMoney = 0;
         InternalPressure = Math.Pow(1.1, (Data.CokeLevel - 1)) * Data.ShakeCount;
-        ElectricPowerGeneration = InternalPressure * ((double)(Data.WaterWheelLevel)*3 / 100) * Math.Pow(1.1, ((Data.DynamoLevel)*50- 1))/100;
+        
+        /*if(Data.CokeLevel < 60){
+        ElectricPowerGeneration = InternalPressure / 20  + ((double)(Data.WaterWheelLevel - 1)*3)  +  ((double)(Data.DynamoLevel - 1)*50);
+        }
+
+        else{
+        ElectricPowerGeneration = InternalPressure / 20  + Math.Pow(1.1, (Data.WaterWheelLevel + 50 - 1))  +  Math.Pow(1.1, (Data.DynamoLevel + 50));    
+        }
+
+        ElectricPowerGeneration = InternalPressure * ((double)(1 +((Data.WaterWheelLevel)- 1)*3) / 100) * Math.Pow(5.0, 1 +(((Data.DynamoLevel)- 1)- 1))*10.0;*/
+
+        ElectricPowerGeneration = InternalPressure * Math.Pow(5.0, 1 +(((Data.DynamoLevel)- 1)- 1))*10.0 + (double)(1 +((Data.WaterWheelLevel)- 1)*3) / 100;
+
         CurrentElectricPowerGeneration = ElectricPowerGeneration;
         Money = (int)(10 * ElectricPowerGeneration);
         MoneyText.text = string.Format("獲得金額:{0}円", CurrentMoney);
