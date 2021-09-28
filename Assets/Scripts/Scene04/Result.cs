@@ -19,17 +19,15 @@ public class Result : MonoBehaviour
         CurrentMoney = 0;
         InternalPressure = Math.Pow(1.1, (Data.CokeLevel - 1)) * Data.ShakeCount;
         
-        /*if(Data.CokeLevel < 60){
-        ElectricPowerGeneration = InternalPressure / 20  + ((double)(Data.WaterWheelLevel - 1)*3)  +  ((double)(Data.DynamoLevel - 1)*50);
-        }
-
-        else{
-        ElectricPowerGeneration = InternalPressure / 20  + Math.Pow(1.1, (Data.WaterWheelLevel + 50 - 1))  +  Math.Pow(1.1, (Data.DynamoLevel + 50));    
-        }
-
-        ElectricPowerGeneration = InternalPressure * ((double)(1 +((Data.WaterWheelLevel)- 1)*3) / 100) * Math.Pow(5.0, 1 +(((Data.DynamoLevel)- 1)- 1))*10.0;*/
-
-        ElectricPowerGeneration = InternalPressure * Math.Pow(5.0, 1 +(((Data.DynamoLevel)- 1)- 1))*10.0 + (double)(1 +((Data.WaterWheelLevel)- 1)*3) / 100;
+        /*
+        ElectricPowerGeneration = InternalPressure * ((double)(1 +((Data.WaterWheelLevel)- 1)*3) / 100) * Math.Pow(5.0, 1 +(((Data.DynamoLevel)- 1)- 1))*10.0;
+        */
+        /*
+        ElectricPowerGeneration = (InternalPressure * Math.Pow(5.0, Data.DynamoLevel - 1) + Math.Pow(1.1, Data.WaterWheelLevel - 1))/10;
+        */
+        
+        ElectricPowerGeneration = (InternalPressure + Math.Pow(1.5, Data.WaterWheelLevel - 1)) * Math.Pow(5.0, Data.DynamoLevel - 1)/10;
+        
 
         CurrentElectricPowerGeneration = ElectricPowerGeneration;
         Money = (int)(10 * ElectricPowerGeneration);
