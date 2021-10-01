@@ -14,9 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/03_Shake.unity
     guid: 8159e88092cadec42af8fa11d16f45a1
-  - enabled: 1
-    path: Assets/Scenes/04_Releace.unity
-    guid: 174e7595db960ae46860764bf0b86633
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/04_Result.unity
     guid: bab32e5a24ceff74b9cbd9250ea3fad8
