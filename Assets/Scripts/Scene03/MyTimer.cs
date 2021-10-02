@@ -31,39 +31,39 @@ public class MyTimer : MonoBehaviour
         }
         
         else if(Data.BottleLevel < 17){
-            RemainTime=8.0f+0.9f*(Data.BottleLevel-6);
+            RemainTime=8.0f+0.7f*(Data.BottleLevel-6);
         } 
         
         else if(Data.BottleLevel < 27){
-            RemainTime=17.0f+0.8f*(Data.BottleLevel-16);
+            RemainTime=15.0f+0.5f*(Data.BottleLevel-16);
         }
 
         else if(Data.BottleLevel < 47){
-            RemainTime=25.0f+0.7f*(Data.BottleLevel-26);
+            RemainTime=20.0f+0.2f*(Data.BottleLevel-26);
         }
 
-        else if(Data.BottleLevel < 67){
-            RemainTime=39.0f+0.6f*(Data.BottleLevel-46);
+        else if(Data.BottleLevel < 87){
+            RemainTime=24.0f+0.1f*(Data.BottleLevel-46);
         }
 
-        else if(Data.BottleLevel < 107){
-            RemainTime=51.0f+0.5f*(Data.BottleLevel-66);
+        else if(Data.BottleLevel < 187){
+            RemainTime=28.0f+0.07f*(Data.BottleLevel-86);
         }
 
-        else if(Data.BottleLevel < 147){
-            RemainTime=71.0f+0.4f*(Data.BottleLevel-106);
+        else if(Data.BottleLevel < 287){
+            RemainTime=35.0f+0.05f*(Data.BottleLevel-106);
         }
 
-        else if(Data.BottleLevel < 227){
-            RemainTime=87.0f+0.3f*(Data.BottleLevel-146);
+        else if(Data.BottleLevel < 787){
+            RemainTime=40.0f+0.03f*(Data.BottleLevel-286);
         }
-
-        else if(Data.BottleLevel < 307){
-            RemainTime=111.0f+0.2f*(Data.BottleLevel-226);
+ 
+        else if(Data.BottleLevel < 1537){
+            RemainTime=45.0f+0.02f*(Data.BottleLevel-786);
         }
-
+        
         else{
-            RemainTime=137.0f+0.1f*(Data.BottleLevel-1);
+            RemainTime=60.0f+0.01f*(Data.BottleLevel-1536);
         }
 
         MarginTime=Data.MarginTime;
