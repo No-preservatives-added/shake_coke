@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Result : MonoBehaviour
 {
     public Text MoneyText, ElectricPowerGenerationText, InternalPressureText, SecondText, ShakeCountText;
-    private int Money;
+    private ulong Money;
     private double ElectricPowerGeneration, InternalPressure, CurrentMoney;
     private double CurrentElectricPowerGeneration;
     private float WaitTime;
@@ -30,7 +30,7 @@ public class Result : MonoBehaviour
         
 
         CurrentElectricPowerGeneration = ElectricPowerGeneration;
-        Money = (int)(10 * ElectricPowerGeneration);
+        Money = (ulong)(10.0 * ElectricPowerGeneration);
         MoneyText.text = string.Format("獲得金額:{0}円", CurrentMoney);
         ElectricPowerGenerationText.text = string.Format("発電量:{0}kw", CurrentElectricPowerGeneration);
         ShakeCountText.text = string.Format("振った回数:{0}回", Data.ShakeCount);

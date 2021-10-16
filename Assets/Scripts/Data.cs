@@ -5,18 +5,18 @@ using UnityEngine;
 public class Data
 {
     //定数の定義
-    public static int DefaultCokeCost = 5;
-    public static int DefaultBottleCost = 200;
-    public static int DefaultWaterWheelCost = 50;
-    public static int DefaultDynamoCost = 400;
-    public static int DefaultProbabilityCost = 100000;
-    public static int DefaultStopCost = 50000;
-    public static int DefaultMagnificationCost = 1000000;
+    public static ulong DefaultCokeCost = 5;
+    public static ulong DefaultBottleCost = 200;
+    public static ulong DefaultWaterWheelCost = 50;
+    public static ulong DefaultDynamoCost = 1000000;
+    public static ulong DefaultProbabilityCost = 100000;
+    public static ulong DefaultStopCost = 50000;
+    public static ulong DefaultMagnificationCost = 1000000;
 
 
 
 
-    public static int money = 0;
+    public static ulong money = 0;
 
     public static int CokeLevel = 1;
     public static int BottleLevel = 1;
@@ -26,14 +26,14 @@ public class Data
     public static int StopLevel = 1;
     public static int MagnificationLevel = 1;
 
-    public static int AddCost = 10;
-    public static int CokeCost = DefaultCokeCost;
-    public static int BottleCost = DefaultBottleCost;
-    public static int WaterWheelCost = DefaultWaterWheelCost;
-    public static int DynamoCost = DefaultDynamoCost;
-    public static int ProbabilityCost = DefaultProbabilityCost;
-    public static int StopCost = DefaultStopCost;
-    public static int MagnificationCost = DefaultMagnificationCost;
+    public static ulong AddCost = 10;
+    public static ulong CokeCost = DefaultCokeCost;
+    public static ulong BottleCost = DefaultBottleCost;
+    public static ulong WaterWheelCost = DefaultWaterWheelCost;
+    public static ulong DynamoCost = DefaultDynamoCost;
+    public static ulong ProbabilityCost = DefaultProbabilityCost;
+    public static ulong StopCost = DefaultStopCost;
+    public static ulong MagnificationCost = DefaultMagnificationCost;
 
     public static int ShakeCount = 0;
     public static float ShakeTime = 0.0f;
