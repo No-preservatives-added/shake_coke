@@ -11,14 +11,23 @@ public class LevelUp : MonoBehaviour
     {
         Data.CokeLevel++;
         Data.money -= Data.CokeCost;
-        Data.CokeCost = (ulong)(Data.DefaultCokeCost*Math.Pow(1.05,(Data.CokeLevel-1)));
+        /*Data.CokeCost = (ulong)(Data.DefaultCokeCost*Math.Pow(1.05,(Data.CokeLevel-1)));*/
+
+        if(Data.CokeLevel < 495){
+        Data.CokeCost = (ulong)((ulong)Data.DefaultCokeCost + (ulong)Data.CokeLevel);
+        }
+
+        else{
+        Data.CokeCost = (ulong)((Data.DefaultCokeCost + 495)*Math.Pow(1.001,((ulong)(Data.CokeLevel+9))));
+        }
+
     } 
     public void BottleLevelUp()
     {
         Data.BottleLevel++;
         Data.money -= Data.BottleCost;
 
-        if(Data.BottleLevel < 11){
+        /*if(Data.BottleLevel < 11){
         Data.BottleCost = (ulong)(Data.DefaultBottleCost*(1+0.25*(Data.BottleLevel-1)));
         }
 
@@ -32,6 +41,46 @@ public class LevelUp : MonoBehaviour
 
         else{
         Data.BottleCost = (ulong)(Data.DefaultBottleCost*Math.Pow(1.05,(Data.BottleLevel-1))-2470798);
+        }*/
+        
+        if(Data.BottleLevel < 7){
+        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost*(1+0.25*(Data.BottleLevel-1)));
+        }
+
+        else if(Data.BottleLevel < 17){
+        Data.BottleCost = (ulong)(450 + (ulong)Data.DefaultBottleCost*(1+5.0*(Data.BottleLevel-6)));
+        }
+        
+        else if(Data.BottleLevel < 27){
+        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost*(1+10.0*(Data.BottleLevel-16)));
+        }
+
+        else if(Data.BottleLevel < 47){
+        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost*(1+20.0*(Data.BottleLevel-26)));
+        }
+
+        else if(Data.BottleLevel < 87){
+        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost*(1+30.0*(Data.BottleLevel-46)));
+        }
+
+        else if(Data.BottleLevel < 187){
+        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost*(1+5.0*(Data.BottleLevel-86)));
+        }
+
+        else if(Data.BottleLevel < 287){
+        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost*(1+5.0*(Data.BottleLevel-186)));
+        }
+
+        else if(Data.BottleLevel < 787){
+        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost*(1+5.0*(Data.BottleLevel-286)));
+        }
+
+        else if(Data.BottleLevel < 1537){
+        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost*(1+5.0*(Data.BottleLevel-786)));
+        }
+
+        else{
+        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost*Math.Pow(1.05,(Data.BottleLevel-1)));
         }
         
     }
@@ -39,7 +88,11 @@ public class LevelUp : MonoBehaviour
     {
         Data.WaterWheelLevel++;
         Data.money -= Data.WaterWheelCost;
-        Data.WaterWheelCost = (ulong)(Data.DefaultWaterWheelCost*(1+0.5*(Data.WaterWheelLevel-1)));
+        /*Data.WaterWheelCost = (ulong)(Data.DefaultWaterWheelCost*(1+0.5*(Data.WaterWheelLevel-1)));*/
+
+        Data.WaterWheelCost = (ulong)(Data.DefaultWaterWheelCost*Math.Pow(1.002,((ulong)(Data.WaterWheelLevel-1))));
+
+
     }
     public void DynamoLevelUp()
     {
