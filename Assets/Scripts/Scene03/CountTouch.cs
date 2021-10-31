@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CountTouch : MonoBehaviour
 {
-    private int touchCount = 0;
+    //private int touchCount = 0;
 
     [SerializeField] private GameObject master;
     [SerializeField] private GameObject bottle;
