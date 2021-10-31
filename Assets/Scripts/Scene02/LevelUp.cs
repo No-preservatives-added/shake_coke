@@ -18,7 +18,8 @@ public class LevelUp : MonoBehaviour
         }
 
         else{
-        Data.CokeCost = (ulong)((Data.DefaultCokeCost + 495)*Math.Pow(1.001,((ulong)(Data.CokeLevel+9))));
+        Data.DefaultCokeCost=+495;
+        Data.CokeCost = (ulong)(Data.DefaultCokeCost*Math.Pow(1.001,((ulong)(Data.CokeLevel+9))));
         }
 
     } 
