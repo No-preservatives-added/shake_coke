@@ -17,6 +17,36 @@ public class Data
 
 
     public static ulong money = 0;
+    public static double money_digit = 0;
+
+    public static double moneydummy_information = 3.2d;
+    public static int moneydummy_digit = 1;
+
+    public static void MoneyAdder(double addmoney){
+        int digit=0;
+        while(addmoney>=10){
+            addmoney/=10.0d;
+            digit+=1;
+        }
+        if(moneydummy_digit>=digit){
+            for(int i=0;i<moneydummy_digit-digit;i++){
+                addmoney/=10.0d;
+            }
+            moneydummy_information += addmoney;
+        }else{
+            for(int i=0;i<digit-moneydummy_digit;i++){
+                moneydummy_information/=10.0d;
+            }
+            moneydummy_information = addmoney + moneydummy_information;
+            moneydummy_digit=digit;
+        }
+
+        if(moneydummy_information>=10){
+            Debug.Log(moneydummy_information);
+            moneydummy_information/=10.0d;
+            moneydummy_digit++;
+        }
+    }
 
     public static int CokeLevel = 1;
     public static int BottleLevel = 1;
@@ -44,3 +74,4 @@ public class Data
 
 
 }
+
