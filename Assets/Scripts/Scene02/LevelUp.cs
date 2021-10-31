@@ -104,7 +104,8 @@ public class LevelUp : MonoBehaviour
         }
 
         else{
-        Data.DynamoCost = (ulong)(Data.DefaultDynamoCost*1000000*((ulong)Data.DynamoLevel-3));
+        Data.DefaultDynamoCost=Data.DefaultDynamoCost*1000000;
+        Data.DynamoCost = (ulong)(Data.DefaultDynamoCost*((ulong)Data.DynamoLevel-3));
         }
         
     }
