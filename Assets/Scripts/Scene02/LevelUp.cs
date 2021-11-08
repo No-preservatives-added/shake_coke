@@ -81,7 +81,7 @@ public class LevelUp : MonoBehaviour
         }
 
         else{
-        Data.BottleCost = (ulong)((ulong)1083000*Math.Pow(1.05,(Data.BottleLevel-1536)));
+        Data.BottleCost = (ulong)((ulong)1083000*Math.Pow(1.003,(Data.BottleLevel-1536)));
         }
         
     }
