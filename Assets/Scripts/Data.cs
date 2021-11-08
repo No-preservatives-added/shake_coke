@@ -6,7 +6,7 @@ public class Data
 {
     //定数の定義
     public static ulong DefaultCokeCost = 5;
-    public static ulong DefaultBottleCost = 200;
+    public static ulong DefaultBottleCost = 250;
     public static ulong DefaultWaterWheelCost = 100;
     public static ulong DefaultDynamoCost = 1000000;
     public static ulong DefaultProbabilityCost = 100000;

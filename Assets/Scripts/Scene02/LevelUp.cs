@@ -45,43 +45,43 @@ public class LevelUp : MonoBehaviour
         }*/
         
         if(Data.BottleLevel < 7){
-        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost*(1+0.25*(Data.BottleLevel-1)));
+        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost+50*((ulong)Data.BottleLevel-1));
         }
 
-        else if(Data.BottleLevel < 17){
-        Data.BottleCost = (ulong)(450 + (ulong)Data.DefaultBottleCost*(1+5.0*(Data.BottleLevel-6)));
+        else if(Data.BottleLevel < 17){ 
+        Data.BottleCost = (ulong)(500+100*(Data.BottleLevel-6));
         }
         
         else if(Data.BottleLevel < 27){
-        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost*(1+10.0*(Data.BottleLevel-16)));
+        Data.BottleCost = (ulong)(1500+150*(Data.BottleLevel-16));
         }
 
         else if(Data.BottleLevel < 47){
-        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost*(1+20.0*(Data.BottleLevel-26)));
+        Data.BottleCost = (ulong)(3000+200*(Data.BottleLevel-26));
         }
 
         else if(Data.BottleLevel < 87){
-        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost*(1+30.0*(Data.BottleLevel-46)));
+        Data.BottleCost = (ulong)(7000+250*(Data.BottleLevel-46));
         }
 
         else if(Data.BottleLevel < 187){
-        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost*(1+5.0*(Data.BottleLevel-86)));
+        Data.BottleCost = (ulong)(17000+300*(Data.BottleLevel-86));
         }
 
         else if(Data.BottleLevel < 287){
-        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost*(1+5.0*(Data.BottleLevel-186)));
+        Data.BottleCost = (ulong)(47000+350*(Data.BottleLevel-186));
         }
 
         else if(Data.BottleLevel < 787){
-        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost*(1+5.0*(Data.BottleLevel-286)));
+        Data.BottleCost = (ulong)(82000+500*(Data.BottleLevel-286));
         }
 
         else if(Data.BottleLevel < 1537){
-        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost*(1+5.0*(Data.BottleLevel-786)));
+        Data.BottleCost = (ulong)(332000+1000*(Data.BottleLevel-786));
         }
 
         else{
-        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost*Math.Pow(1.05,(Data.BottleLevel-1)));
+        Data.BottleCost = (ulong)((ulong)1083000*Math.Pow(1.05,(Data.BottleLevel-1536)));
         }
         
     }
