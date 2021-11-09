@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-
+using System.Numerics;
 
 public class LevelUp : MonoBehaviour
 {
@@ -11,15 +11,15 @@ public class LevelUp : MonoBehaviour
     {
         Data.CokeLevel++;
         Data.money -= Data.CokeCost;
-        /*Data.CokeCost = (ulong)(Data.DefaultCokeCost*Math.Pow(1.05,(Data.CokeLevel-1)));*/
+        /*Data.CokeCost = (BigInteger)(Data.DefaultCokeCost*Math.Pow(1.05,(Data.CokeLevel-1)));*/
 
         if(Data.CokeLevel < 495){
-        Data.CokeCost = (ulong)((ulong)Data.DefaultCokeCost + (ulong)Data.CokeLevel);
+        Data.CokeCost = (BigInteger)((BigInteger)Data.DefaultCokeCost + (BigInteger)Data.CokeLevel);
         }
 
         else{
         Data.DefaultCokeCost=+495;
-        Data.CokeCost = (ulong)(Data.DefaultCokeCost*Math.Pow(1.001,((ulong)(Data.CokeLevel+9))));
+        Data.CokeCost = (BigInteger)(Data.DefaultCokeCost*BigInteger.Pow(2,(Data.CokeLevel+9)));
         }
 
     } 
@@ -29,59 +29,59 @@ public class LevelUp : MonoBehaviour
         Data.money -= Data.BottleCost;
 
         /*if(Data.BottleLevel < 11){
-        Data.BottleCost = (ulong)(Data.DefaultBottleCost*(1+0.25*(Data.BottleLevel-1)));
+        Data.BottleCost = (BigInteger)(Data.DefaultBottleCost*(1+0.25*(Data.BottleLevel-1)));
         }
 
         else if(Data.BottleLevel < 105){
-        Data.BottleCost = (ulong)(Data.DefaultBottleCost*(1+0.5*(Data.BottleLevel-1))-500);
+        Data.BottleCost = (BigInteger)(Data.DefaultBottleCost*(1+0.5*(Data.BottleLevel-1))-500);
         }
 
         else if(Data.BottleLevel < 195){
-        Data.BottleCost = (ulong)(Data.DefaultBottleCost*(1+5.0*(Data.BottleLevel-1))-93200);
+        Data.BottleCost = (BigInteger)(Data.DefaultBottleCost*(1+5.0*(Data.BottleLevel-1))-93200);
         }
 
         else{
-        Data.BottleCost = (ulong)(Data.DefaultBottleCost*Math.Pow(1.05,(Data.BottleLevel-1))-2470798);
+        Data.BottleCost = (BigInteger)(Data.DefaultBottleCost*Math.Pow(1.05,(Data.BottleLevel-1))-2470798);
         }*/
         
         if(Data.BottleLevel < 7){
-        Data.BottleCost = (ulong)((ulong)Data.DefaultBottleCost+50*((ulong)Data.BottleLevel-1));
+        Data.BottleCost = (BigInteger)((BigInteger)Data.DefaultBottleCost+50*((BigInteger)Data.BottleLevel-1));
         }
 
         else if(Data.BottleLevel < 17){ 
-        Data.BottleCost = (ulong)(500+100*(Data.BottleLevel-6));
+        Data.BottleCost = (BigInteger)(500+100*(Data.BottleLevel-6));
         }
         
         else if(Data.BottleLevel < 27){
-        Data.BottleCost = (ulong)(1500+150*(Data.BottleLevel-16));
+        Data.BottleCost = (BigInteger)(1500+150*(Data.BottleLevel-16));
         }
 
         else if(Data.BottleLevel < 47){
-        Data.BottleCost = (ulong)(3000+200*(Data.BottleLevel-26));
+        Data.BottleCost = (BigInteger)(3000+200*(Data.BottleLevel-26));
         }
 
         else if(Data.BottleLevel < 87){
-        Data.BottleCost = (ulong)(7000+250*(Data.BottleLevel-46));
+        Data.BottleCost = (BigInteger)(7000+250*(Data.BottleLevel-46));
         }
 
         else if(Data.BottleLevel < 187){
-        Data.BottleCost = (ulong)(17000+300*(Data.BottleLevel-86));
+        Data.BottleCost = (BigInteger)(17000+300*(Data.BottleLevel-86));
         }
 
         else if(Data.BottleLevel < 287){
-        Data.BottleCost = (ulong)(47000+350*(Data.BottleLevel-186));
+        Data.BottleCost = (BigInteger)(47000+350*(Data.BottleLevel-186));
         }
 
         else if(Data.BottleLevel < 787){
-        Data.BottleCost = (ulong)(82000+500*(Data.BottleLevel-286));
+        Data.BottleCost = (BigInteger)(82000+500*(Data.BottleLevel-286));
         }
 
         else if(Data.BottleLevel < 1537){
-        Data.BottleCost = (ulong)(332000+1000*(Data.BottleLevel-786));
+        Data.BottleCost = (BigInteger)(332000+1000*(Data.BottleLevel-786));
         }
 
         else{
-        Data.BottleCost = (ulong)((ulong)1083000*Math.Pow(1.003,(Data.BottleLevel-1536)));
+        Data.BottleCost = (BigInteger)((BigInteger)1083000*BigInteger.Pow(2,(Data.BottleLevel-1536)));
         }
         
     }
@@ -89,10 +89,9 @@ public class LevelUp : MonoBehaviour
     {
         Data.WaterWheelLevel++;
         Data.money -= Data.WaterWheelCost;
-        /*Data.WaterWheelCost = (ulong)(Data.DefaultWaterWheelCost*(1+0.5*(Data.WaterWheelLevel-1)));*/
-
-        Data.WaterWheelCost = (ulong)(Data.DefaultWaterWheelCost*Math.Pow(1.002,((ulong)(Data.WaterWheelLevel-1))));
-
+        /*Data.WaterWheelCost = (BigInteger)(Data.DefaultWaterWheelCost*(1+0.5*(Data.WaterWheelLevel-1)));*/
+  
+        Data.WaterWheelCost = (BigInteger)(Data.DefaultWaterWheelCost*BigInteger.Pow(2,((Data.WaterWheelLevel-1))));
 
     }
     public void DynamoLevelUp()
@@ -100,12 +99,12 @@ public class LevelUp : MonoBehaviour
         Data.DynamoLevel++;
         Data.money -= Data.DynamoCost;
         if(Data.BottleLevel < 5){
-        Data.DynamoCost = (ulong)(Data.DefaultDynamoCost*Math.Pow(1000,(Data.DynamoLevel-1)));
+        Data.DynamoCost = (BigInteger)(Data.DefaultDynamoCost*BigInteger.Pow(1000,(Data.DynamoLevel-1)));
         }
 
         else{
         Data.DefaultDynamoCost=Data.DefaultDynamoCost*1000000;
-        Data.DynamoCost = (ulong)(Data.DefaultDynamoCost*((ulong)Data.DynamoLevel-3));
+        Data.DynamoCost = (BigInteger)(Data.DefaultDynamoCost*((BigInteger)Data.DynamoLevel-3));
         }
         
     }
