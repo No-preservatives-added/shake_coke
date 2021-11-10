@@ -19,7 +19,7 @@ public class LevelUp : MonoBehaviour
 
         else{
         Data.DefaultCokeCost=+495;
-        Data.CokeCost = (BigInteger)(Data.DefaultCokeCost*BigInteger.Pow(2,(Data.CokeLevel+9)));
+        Data.CokeCost = (BigInteger)(Data.DefaultCokeCost*BigInteger.Pow((Data.CokeLevel-494),2));
         }
 
     } 
@@ -81,7 +81,7 @@ public class LevelUp : MonoBehaviour
         }
 
         else{
-        Data.BottleCost = (BigInteger)((BigInteger)1083000*BigInteger.Pow(2,(Data.BottleLevel-1536)));
+        Data.BottleCost = (BigInteger)((BigInteger)1083000*BigInteger.Pow((Data.BottleLevel-1536),2));
         }
         
     }
@@ -91,7 +91,7 @@ public class LevelUp : MonoBehaviour
         Data.money -= Data.WaterWheelCost;
         /*Data.WaterWheelCost = (BigInteger)(Data.DefaultWaterWheelCost*(1+0.5*(Data.WaterWheelLevel-1)));*/
   
-        Data.WaterWheelCost = (BigInteger)(Data.DefaultWaterWheelCost*BigInteger.Pow(2,((Data.WaterWheelLevel-1))));
+        Data.WaterWheelCost = (BigInteger)(Data.DefaultWaterWheelCost*BigInteger.Pow((Data.WaterWheelLevel-1),3));
 
     }
     public void DynamoLevelUp()
@@ -104,7 +104,7 @@ public class LevelUp : MonoBehaviour
 
         else{
         Data.DefaultDynamoCost=Data.DefaultDynamoCost*1000000;
-        Data.DynamoCost = (BigInteger)(Data.DefaultDynamoCost*((BigInteger)Data.DynamoLevel-3));
+        Data.DynamoCost = (BigInteger)(Data.DefaultDynamoCost*BigInteger.Pow((Data.DynamoLevel-4),2));
         }
         
     }
