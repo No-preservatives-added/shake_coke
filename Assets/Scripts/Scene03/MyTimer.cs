@@ -48,7 +48,7 @@ public class MyTimer : MonoBehaviour
         }else if(isStopTimeUsing){ // ストップウォッチで止めた時間
             StopTime-=Time.deltaTime;
             ShakeTime += Time.deltaTime;
-            Debug.Log("StopTime = "+StopTime);
+            //Debug.Log("StopTime = "+StopTime);
             if(StopTime<0.0f){
                 isStopTimeUsing=false;
                 isRemainTimeUsing=true; // 残り時間を使う
@@ -56,7 +56,7 @@ public class MyTimer : MonoBehaviour
             }
         }else if(isMarginTimeUsing){ // 最初のマージン
             MarginTime-=Time.deltaTime;
-            Debug.Log("MarginTime = "+MarginTime);
+            //Debug.Log("MarginTime = "+MarginTime);
             if(MarginTime<0.0f){
                 if(RemainTime>0.0f){ //3,2,1,0のカウントダウン後
                     MarginTimeText.enabled = false;

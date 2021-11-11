@@ -1217,7 +1217,7 @@ MonoBehaviour:
   openButton: {fileID: 22044885}
   capObject: {fileID: 986901845}
   waterwheelObject: {fileID: 1186235286}
-  shakeSeconds: 5
+  spillSeconds: 5
   waterParticle: {fileID: 530386523}
 --- !u!114 &467946995
 MonoBehaviour:
