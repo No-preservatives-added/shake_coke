@@ -11,7 +11,7 @@ public class BottleOpen : MonoBehaviour
     [SerializeField] private GameObject openButton;
     [SerializeField] private GameObject capObject;
     [SerializeField] private GameObject waterwheelObject;
-    [SerializeField] private float spillSeconds=5.0f;
+    [SerializeField] private float spillSeconds=10.0f;
     [SerializeField] private GameObject waterParticle;
 
     // Start is called before the first frame update
