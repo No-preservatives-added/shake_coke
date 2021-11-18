@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Result : MonoBehaviour
 {
     public Text MoneyText, ElectricPowerGenerationText, InternalPressureText, SecondText, ShakeCountText;
-    private int Money;
+    private ulong Money;
     private double ElectricPowerGeneration, InternalPressure, CurrentMoney;
     private double CurrentElectricPowerGeneration;
     private float WaitTime;
@@ -18,9 +18,19 @@ public class Result : MonoBehaviour
         WaitTime = 0.0f;
         CurrentMoney = 0;
         InternalPressure = Math.Pow(1.1, (Data.CokeLevel - 1)) * Data.ShakeCount;
-        ElectricPowerGeneration = InternalPressure * ((double)(Data.WaterWheelLevel) / 100) * Math.Pow(1.1, (Data.DynamoLevel - 1))*10.0;
+        
+        /*
+        ElectricPowerGeneration = InternalPressure * ((double)(1 +((Data.WaterWheelLevel)- 1)*3) / 100) * Math.Pow(5.0, 1 +(((Data.DynamoLevel)- 1)- 1))*10.0;
+        */
+        /*
+        ElectricPowerGeneration = (InternalPressure * Math.Pow(5.0, Data.DynamoLevel - 1) + Math.Pow(1.1, Data.WaterWheelLevel - 1))/10;
+        */
+        
+        ElectricPowerGeneration = (InternalPressure + Math.Pow(1.5, Data.WaterWheelLevel - 1)) * Math.Pow(5.0, Data.DynamoLevel - 1)/10;
+        
+
         CurrentElectricPowerGeneration = ElectricPowerGeneration;
-        Money = (int)(10 * ElectricPowerGeneration);
+        Money = (ulong)(10.0 * ElectricPowerGeneration);
         MoneyText.text = string.Format("獲得金額:{0}円", CurrentMoney);
         ElectricPowerGenerationText.text = string.Format("発電量:{0}kw", CurrentElectricPowerGeneration);
         ShakeCountText.text = string.Format("振った回数:{0}回", Data.ShakeCount);
