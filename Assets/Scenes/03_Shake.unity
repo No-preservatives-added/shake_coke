@@ -1186,6 +1186,7 @@ MonoBehaviour:
   StopTimeText: {fileID: 110276092}
   StopTimeObject: {fileID: 110276090}
   PushButton: {fileID: 1710462624}
+  ShakePanel: {fileID: 1663847394}
   StopTime: 5
 --- !u!114 &467946993
 MonoBehaviour:
