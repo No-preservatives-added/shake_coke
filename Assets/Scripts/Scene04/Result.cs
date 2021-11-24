@@ -54,7 +54,7 @@ public class Result : MonoBehaviour
         {
             if (CurrentElectricPowerGeneration > 0)
             {
-                CurrentElectricPowerGeneration -= ElectricPowerGeneration * (BigInteger)(Time.deltaTime*100 / 2.0f);
+                CurrentElectricPowerGeneration -= ElectricPowerGeneration / (BigInteger)(2.0f / Time.deltaTime);
             }
             if (CurrentElectricPowerGeneration <= 0)
             {
@@ -62,7 +62,7 @@ public class Result : MonoBehaviour
             }
             if (CurrentMoney < Money)
             {
-                CurrentMoney += Money * (BigInteger)(Time.deltaTime*100 / 2.0f);
+                CurrentMoney += Money / (BigInteger)(2.0f / Time.deltaTime);
             }
             if (CurrentMoney >= Money)
             {
@@ -70,6 +70,21 @@ public class Result : MonoBehaviour
             }
         }
 
+        /*DOTween.To 
+            (
+                () => CurrentElectricPowerGeneration,       //何に
+                (x) => CurrentElectricPowerGeneration = x,  //何を
+                0,                                          //どこまで(最終的な値)
+                1                                        //どれくらいの時間
+            ).SetEase(Ease.Linear);
+
+            DOTween.To 
+            (
+                () => CurrentMoney,         //何に
+                (x) => CurrentMoney = x,    //何を
+                Money,                      //どこまで(最終的な値)
+                1                        //どれくらいの時間
+            ).SetEase(Ease.Linear);*/
 
         MoneyText.text = string.Format("獲得金額:{0:0}円", CurrentMoney);
 
