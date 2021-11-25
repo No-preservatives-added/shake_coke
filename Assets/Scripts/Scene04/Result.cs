@@ -33,6 +33,7 @@ public class Result : MonoBehaviour
         ElectricPowerGeneration =  InternalPressure*BigInteger.Pow(Data.WaterWheelLevel,3)*BigInteger.Pow(Data.DynamoLevel,4);
 
         CurrentElectricPowerGeneration = ElectricPowerGeneration;
+        CurrentElectricPowerGenerationsmall = (double)ElectricPowerGeneration;
         Money = 10 * ElectricPowerGeneration;
         MoneyText.text = string.Format("獲得金額:{0}円", CurrentMoney);
         ElectricPowerGenerationText.text = string.Format("発電量:{0}kw", CurrentElectricPowerGeneration);
@@ -62,7 +63,7 @@ public class Result : MonoBehaviour
             
             if (CurrentElectricPowerGenerationsmall <= 0)
             {
-                CurrentElectricPowerGenerationsmall = 0;
+                CurrentElectricPowerGenerationsmall = (double)0;
             }
             
             if (CurrentMoneysmall < (double)Money)
