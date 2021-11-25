@@ -8,9 +8,10 @@ using System.Numerics;
 public class Result : MonoBehaviour
 {
     public Text MoneyText, ElectricPowerGenerationText, InternalPressureText, SecondText, ShakeCountText;
-    private BigInteger Money;
-    private BigInteger ElectricPowerGeneration, InternalPressure, CurrentMoney;
-    private BigInteger CurrentElectricPowerGeneration;
+    private BigInteger ElectricPowerGeneration, Money;
+    private BigInteger InternalPressure;
+    private BigInteger CurrentElectricPowerGeneration, CurrentMoney;
+    private double CurrentElectricPowerGenerationsmall, CurrentMoneysmall;
     private float WaitTime;
     // Start is called before the first frame update
     void Start()
@@ -50,23 +51,62 @@ public class Result : MonoBehaviour
         {
             WaitTime += Time.deltaTime;
         }
+
         else
         {
+            if(ElectricPowerGeneration < 1000 || Money < 1000){
+            if (CurrentElectricPowerGenerationsmall > 0)
+            {
+                CurrentElectricPowerGenerationsmall -= (double)ElectricPowerGeneration * (Time.deltaTime / 2.0f);
+            }
+            
+            if (CurrentElectricPowerGenerationsmall <= 0)
+            {
+                CurrentElectricPowerGenerationsmall = 0;
+            }
+            
+            if (CurrentMoneysmall < (double)Money)
+            {
+                 CurrentMoneysmall += (double)Money * (Time.deltaTime / 2.0f);
+            }
+            
+            if (CurrentMoneysmall >= (double)Money)
+            {
+                CurrentMoneysmall = (double)Money;
+            }
+
+            MoneyText.text = string.Format("獲得金額:{0:0}円", CurrentMoneysmall);
+
+            ElectricPowerGenerationText.text = string.Format("発電量:{0:0.00}kw", CurrentElectricPowerGenerationsmall);            
+            
+            }
+
+            
+            else{
             if (CurrentElectricPowerGeneration > 0)
             {
                 CurrentElectricPowerGeneration -= ElectricPowerGeneration / (BigInteger)(2.0f / Time.deltaTime);
             }
+            
             if (CurrentElectricPowerGeneration <= 0)
             {
                 CurrentElectricPowerGeneration = 0;
             }
+            
             if (CurrentMoney < Money)
             {
                 CurrentMoney += Money / (BigInteger)(2.0f / Time.deltaTime);
             }
+            
             if (CurrentMoney >= Money)
             {
                 CurrentMoney = Money;
+            }
+
+            MoneyText.text = string.Format("獲得金額:{0:0}円", CurrentMoney);
+
+            ElectricPowerGenerationText.text = string.Format("発電量:{0:0.00}kw", CurrentElectricPowerGeneration);
+
             }
         }
 
@@ -85,10 +125,6 @@ public class Result : MonoBehaviour
                 Money,                      //どこまで(最終的な値)
                 1                        //どれくらいの時間
             ).SetEase(Ease.Linear);*/
-
-        MoneyText.text = string.Format("獲得金額:{0:0}円", CurrentMoney);
-
-        ElectricPowerGenerationText.text = string.Format("発電量:{0:0.00}kw", CurrentElectricPowerGeneration);
 
     }
 }
