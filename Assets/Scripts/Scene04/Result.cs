@@ -30,11 +30,11 @@ public class Result : MonoBehaviour
         ElectricPowerGeneration = (InternalPressure + Math.Pow(1.5, Data.WaterWheelLevel - 1)) * Math.Pow(5.0, Data.DynamoLevel - 1)/10;
         */
 
-        ElectricPowerGeneration =  InternalPressure*BigInteger.Pow(Data.WaterWheelLevel,3)*BigInteger.Pow(Data.DynamoLevel,4);
+        ElectricPowerGeneration =  InternalPressure*BigInteger.Pow(Data.WaterWheelLevel,3)*BigInteger.Pow(Data.DynamoLevel,100);
 
         CurrentElectricPowerGeneration = ElectricPowerGeneration;
         CurrentElectricPowerGenerationsmall = (double)ElectricPowerGeneration;
-        Money = 10 * ElectricPowerGeneration;
+        Money = ElectricPowerGeneration;
         MoneyText.text = string.Format("獲得金額:{0}円", CurrentMoney);
         ElectricPowerGenerationText.text = string.Format("発電量:{0}kw", CurrentElectricPowerGeneration);
         ShakeCountText.text = string.Format("振った回数:{0}回", Data.ShakeCount);
@@ -55,7 +55,7 @@ public class Result : MonoBehaviour
 
         else
         {
-            if(ElectricPowerGeneration < 1000 || Money < 1000){
+            if(ElectricPowerGeneration < 1000){
             if (CurrentElectricPowerGenerationsmall > 0)
             {
                 CurrentElectricPowerGenerationsmall -= (double)ElectricPowerGeneration * (Time.deltaTime / 2.0f);
@@ -66,6 +66,12 @@ public class Result : MonoBehaviour
                 CurrentElectricPowerGenerationsmall = (double)0;
             }
             
+            ElectricPowerGenerationText.text = string.Format("発電量:{0:0.00}kw", CurrentElectricPowerGenerationsmall);
+
+            }
+
+            if(Money < 1000){
+
             if (CurrentMoneysmall < (double)Money)
             {
                  CurrentMoneysmall += (double)Money * (Time.deltaTime / 2.0f);
@@ -76,9 +82,7 @@ public class Result : MonoBehaviour
                 CurrentMoneysmall = (double)Money;
             }
 
-            MoneyText.text = string.Format("獲得金額:{0:0}円", CurrentMoneysmall);
-
-            ElectricPowerGenerationText.text = string.Format("発電量:{0:0.00}kw", CurrentElectricPowerGenerationsmall);            
+            MoneyText.text = string.Format("獲得金額:{0:0}円", CurrentMoneysmall);          
             
             }
 
