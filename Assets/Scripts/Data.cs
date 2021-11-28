@@ -9,7 +9,7 @@ public class Data
     public static BigInteger DefaultCokeCost = 10;
     public static BigInteger DefaultBottleCost = 25000;
     public static BigInteger DefaultWaterWheelCost = 100;
-    public static BigInteger DefaultDynamoCost = 1000000000000;
+    public static BigInteger DefaultDynamoCost = 200000000000;
     public static BigInteger DefaultProbabilityCost = 100000;
     public static BigInteger DefaultStopCost = 50000;
     public static BigInteger DefaultMagnificationCost = 1000000;

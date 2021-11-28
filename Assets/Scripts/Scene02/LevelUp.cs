@@ -101,7 +101,7 @@ public class LevelUp : MonoBehaviour
         Data.DynamoLevel++;
         Data.money -= Data.DynamoCost;
         if(Data.BottleLevel < 5){
-        Data.DynamoCost = (BigInteger)(Data.DefaultDynamoCost*BigInteger.Pow(1000,(Data.DynamoLevel-1)));
+        Data.DynamoCost = (BigInteger)(Data.DefaultDynamoCost*BigInteger.Pow(100000,(Data.DynamoLevel-1)));
         }
 
         else{
