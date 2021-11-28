@@ -6,10 +6,10 @@ using System.Numerics;
 public class Data
 {
     //定数の定義
-    public static BigInteger DefaultCokeCost = 5;
-    public static BigInteger DefaultBottleCost = 250;
+    public static BigInteger DefaultCokeCost = 10;
+    public static BigInteger DefaultBottleCost = 25000;
     public static BigInteger DefaultWaterWheelCost = 100;
-    public static BigInteger DefaultDynamoCost = 1000000;
+    public static BigInteger DefaultDynamoCost = 200000000000;
     public static BigInteger DefaultProbabilityCost = 100000;
     public static BigInteger DefaultStopCost = 50000;
     public static BigInteger DefaultMagnificationCost = 1000000;
