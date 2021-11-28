@@ -33,8 +33,8 @@ public class Result : MonoBehaviour
         ElectricPowerGeneration =  InternalPressure*BigInteger.Pow(Data.WaterWheelLevel,3)*BigInteger.Pow(Data.DynamoLevel,100);
 
         CurrentElectricPowerGeneration = ElectricPowerGeneration;
-        CurrentElectricPowerGenerationsmall = (double)ElectricPowerGeneration;
-        Money = ElectricPowerGeneration;
+        CurrentElectricPowerGenerationsmall = (double)ElectricPowerGeneration;       
+        Money = ElectricPowerGeneration;             
         MoneyText.text = string.Format("獲得金額:{0}円", CurrentMoney);
         ElectricPowerGenerationText.text = string.Format("発電量:{0}kw", CurrentElectricPowerGeneration);
         ShakeCountText.text = string.Format("振った回数:{0}回", Data.ShakeCount);

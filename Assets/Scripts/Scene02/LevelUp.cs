@@ -47,43 +47,43 @@ public class LevelUp : MonoBehaviour
         }*/
         
         if(Data.BottleLevel < 7){
-        Data.BottleCost = (BigInteger)((BigInteger)Data.DefaultBottleCost+50*((BigInteger)Data.BottleLevel-1));
+        Data.BottleCost = (BigInteger)((BigInteger)Data.DefaultBottleCost+5000*((BigInteger)Data.BottleLevel-1));
         }
 
         else if(Data.BottleLevel < 17){ 
-        Data.BottleCost = (BigInteger)(500+100*(Data.BottleLevel-6));
+        Data.BottleCost = (BigInteger)(50000+10000*(Data.BottleLevel-6));
         }
         
         else if(Data.BottleLevel < 27){
-        Data.BottleCost = (BigInteger)(1500+150*(Data.BottleLevel-16));
+        Data.BottleCost = (BigInteger)(150000+15000*(Data.BottleLevel-16));
         }
 
         else if(Data.BottleLevel < 47){
-        Data.BottleCost = (BigInteger)(3000+200*(Data.BottleLevel-26));
+        Data.BottleCost = (BigInteger)(300000+20000*(Data.BottleLevel-26));
         }
 
         else if(Data.BottleLevel < 87){
-        Data.BottleCost = (BigInteger)(7000+250*(Data.BottleLevel-46));
+        Data.BottleCost = (BigInteger)(700000+25000*(Data.BottleLevel-46));
         }
 
         else if(Data.BottleLevel < 187){
-        Data.BottleCost = (BigInteger)(17000+300*(Data.BottleLevel-86));
+        Data.BottleCost = (BigInteger)(1700000+30000*(Data.BottleLevel-86));
         }
 
         else if(Data.BottleLevel < 287){
-        Data.BottleCost = (BigInteger)(47000+350*(Data.BottleLevel-186));
+        Data.BottleCost = (BigInteger)(4700000+35000*(Data.BottleLevel-186));
         }
 
         else if(Data.BottleLevel < 787){
-        Data.BottleCost = (BigInteger)(82000+500*(Data.BottleLevel-286));
+        Data.BottleCost = (BigInteger)(8200000+50000*(Data.BottleLevel-286));
         }
 
         else if(Data.BottleLevel < 1537){
-        Data.BottleCost = (BigInteger)(332000+1000*(Data.BottleLevel-786));
+        Data.BottleCost = (BigInteger)(33200000+100000*(Data.BottleLevel-786));
         }
 
         else{
-        Data.BottleCost = (BigInteger)((BigInteger)1083000*BigInteger.Pow((Data.BottleLevel-1536),2));
+        Data.BottleCost = (BigInteger)((BigInteger)108300000*BigInteger.Pow((Data.BottleLevel-1536),2));
         }
         
     }
