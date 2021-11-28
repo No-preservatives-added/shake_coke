@@ -38,7 +38,7 @@ public class Result : MonoBehaviour
         MoneyText.text = string.Format("獲得金額:{0}円", CurrentMoney);
         ElectricPowerGenerationText.text = string.Format("発電量:{0}kw", CurrentElectricPowerGeneration);
         ShakeCountText.text = string.Format("振った回数:{0}回", Data.ShakeCount);
-        InternalPressureText.text = string.Format("最終的な内圧:{0:0.000}Pa", InternalPressure);
+        InternalPressureText.text = string.Format("最終的な内圧:{0:0}Pa", InternalPressure);
         SecondText.text = string.Format("振った秒数:{0:0.00}秒",Data.ShakeTime);
 
         Data.money += Money;
@@ -110,7 +110,7 @@ public class Result : MonoBehaviour
 
             MoneyText.text = string.Format("獲得金額:{0:0}円", CurrentMoney);
 
-            ElectricPowerGenerationText.text = string.Format("発電量:{0:0.00}kw", CurrentElectricPowerGeneration);
+            ElectricPowerGenerationText.text = string.Format("発電量:{0:0}kw", CurrentElectricPowerGeneration);
 
             }
         }
