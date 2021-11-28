@@ -11,7 +11,7 @@ public class BottleOpen : MonoBehaviour
     [SerializeField] private GameObject openButton;
     [SerializeField] private GameObject capObject;
     [SerializeField] private GameObject waterwheelObject;
-    [SerializeField] private float shakeSeconds=5.0f;
+    [SerializeField] private float spillSeconds=10.0f;
     [SerializeField] private GameObject waterParticle;
 
     // Start is called before the first frame update
@@ -42,15 +42,18 @@ public class BottleOpen : MonoBehaviour
     IEnumerator RotateMotion(){
         Debug.Log("RemoveCap");
         yield return StartCoroutine(RemoveCap());// コルーチン実行
-        while (shakeSeconds>0.0f)
+        if (Data.ShakeCount<100){// 振る回数が100より小さかったら時間短く
+            spillSeconds=Data.ShakeCount*0.05f;
+        }
+        while (spillSeconds>0.0f)
         {   
-            if (shakeSeconds>0.2f){
+            if (spillSeconds>0.2f){
                 yield return StartCoroutine(RotateWaterwheel(0));
             }else{
                 yield return StartCoroutine(RotateWaterwheel(1));
             }
-            shakeSeconds-=0.2f;
-            Debug.Log("shakeSeconds= "+shakeSeconds);
+            spillSeconds-=0.2f;
+            Debug.Log("spillSeconds= "+spillSeconds);
         }
         Debug.Log("show_result");
         this.gameObject.GetComponent<SceneSender>().SceneSend(); //シーン遷移

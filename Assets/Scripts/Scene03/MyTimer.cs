@@ -14,7 +14,7 @@ public class MyTimer : MonoBehaviour
     public Text StopTimeText;
     public GameObject StopTimeObject;
     [SerializeField] private GameObject PushButton;
-
+    [SerializeField] private GameObject ShakePanel;
 
     public float StopTime;
     private float RemainTime;
@@ -25,7 +25,47 @@ public class MyTimer : MonoBehaviour
     {
         isMarginTimeUsing=true;
         StopTimeObject.SetActive(false);
-        RemainTime=10.0f+0.1f*(Data.BottleLevel-1);
+        
+        if(Data.BottleLevel < 7){
+            RemainTime=3.0f+1.0f*(Data.BottleLevel-1);
+        }
+        
+        else if(Data.BottleLevel < 17){
+            RemainTime=8.0f+0.7f*(Data.BottleLevel-6);
+        } 
+        
+        else if(Data.BottleLevel < 27){
+            RemainTime=15.0f+0.5f*(Data.BottleLevel-16);
+        }
+
+        else if(Data.BottleLevel < 47){
+            RemainTime=20.0f+0.2f*(Data.BottleLevel-26);
+        }
+
+        else if(Data.BottleLevel < 87){
+            RemainTime=24.0f+0.1f*(Data.BottleLevel-46);
+        }
+
+        else if(Data.BottleLevel < 187){
+            RemainTime=28.0f+0.07f*(Data.BottleLevel-86);
+        }
+
+        else if(Data.BottleLevel < 287){
+            RemainTime=35.0f+0.05f*(Data.BottleLevel-106);
+        }
+
+        else if(Data.BottleLevel < 787){
+            RemainTime=40.0f+0.03f*(Data.BottleLevel-286);
+        }
+ 
+        else if(Data.BottleLevel < 1537){
+            RemainTime=45.0f+0.02f*(Data.BottleLevel-786);
+        }
+        
+        else{
+            RemainTime=60.0f+0.01f*(Data.BottleLevel-1536);
+        }
+
         MarginTime=Data.MarginTime;
         ShakeTime = 0.0f;
     }
@@ -67,6 +107,7 @@ public class MyTimer : MonoBehaviour
                     MarginTimeText.enabled = false;
                     isMarginTimeUsing=false;
                     PushButton.SetActive(false);// Pushボタン消去
+                    ShakePanel.SetActive(false);// 振れ画像消去
                     Data.ShakeTime = ShakeTime;
                     StartCoroutine(this.GetComponent<BottleOpen>().ZoomToCokeBottle()); //ボトル開栓アニメーション
                 }

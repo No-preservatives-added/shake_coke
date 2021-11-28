@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Numerics;
 
 public class Data
 {
     //定数の定義
-    public static int DefaultCokeCost = 100;
-    public static int DefaultBottleCost = 100;
-    public static int DefaultWaterWheelCost = 1000;
-    public static int DefaultDynamoCost = 100;
-    public static int DefaultProbabilityCost = 100000;
-    public static int DefaultStopCost = 50000;
-    public static int DefaultMagnificationCost = 1000000;
+    public static BigInteger DefaultCokeCost = 5;
+    public static BigInteger DefaultBottleCost = 250;
+    public static BigInteger DefaultWaterWheelCost = 100;
+    public static BigInteger DefaultDynamoCost = 1000000;
+    public static BigInteger DefaultProbabilityCost = 100000;
+    public static BigInteger DefaultStopCost = 50000;
+    public static BigInteger DefaultMagnificationCost = 1000000;
 
 
 
 
-    public static int money = 0;
+    public static BigInteger money = 0;
 
     public static int CokeLevel = 1;
     public static int BottleLevel = 1;
@@ -26,19 +27,19 @@ public class Data
     public static int StopLevel = 1;
     public static int MagnificationLevel = 1;
 
-    public static int AddCost = 10;
-    public static int CokeCost = DefaultCokeCost;
-    public static int BottleCost = DefaultBottleCost;
-    public static int WaterWheelCost = DefaultWaterWheelCost;
-    public static int DynamoCost = DefaultDynamoCost;
-    public static int ProbabilityCost = DefaultProbabilityCost;
-    public static int StopCost = DefaultStopCost;
-    public static int MagnificationCost = DefaultMagnificationCost;
+    public static BigInteger AddCost = 10;
+    public static BigInteger CokeCost = DefaultCokeCost;
+    public static BigInteger BottleCost = DefaultBottleCost;
+    public static BigInteger WaterWheelCost = DefaultWaterWheelCost;
+    public static BigInteger DynamoCost = DefaultDynamoCost;
+    public static BigInteger ProbabilityCost = DefaultProbabilityCost;
+    public static BigInteger StopCost = DefaultStopCost;
+    public static BigInteger MagnificationCost = DefaultMagnificationCost;
 
     public static int ShakeCount = 0;
     public static float ShakeTime = 0.0f;
     public static float MarginTime = 3.0f;
-    public static float RemainTime = 10.0f;
+    public static float RemainTime = 3.0f;
     //public static float RemainTime=1.0f; // デバッグ用
     public static float StopTime = 5.0f;
 
