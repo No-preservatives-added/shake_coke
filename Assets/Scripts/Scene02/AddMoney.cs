@@ -17,6 +17,6 @@ public class AddMoney : MonoBehaviour
     }
 
     public void MoneyUp(){
-        Data.money+=100000;
+        Data.money+=1000000000000;
     }
 }
