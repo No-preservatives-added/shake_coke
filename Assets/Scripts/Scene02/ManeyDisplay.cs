@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Numerics;
+
 
 public class ManeyDisplay : MonoBehaviour
 {
     // Start is called before the first frame update
     public Text moneytext;
+
+    public static BigInteger kei = 10000000000000000;
+    public static BigInteger gai = kei*10000;
+
     void Start()
     {
 
@@ -37,11 +43,11 @@ public class ManeyDisplay : MonoBehaviour
         Data.money/10000000000000000, (Data.money - (Data.money/10000000000000000)*10000000000000000)/1000000000000 ,(Data.money - (Data.money/1000000000000)*1000000000000)/100000000, (Data.money - (Data.money/100000000)*100000000)/10000);
         }
         
-        /*if (Data.money >= 100000000000000000000){
+        if (Data.money >= gai){
         moneytext.text = string.Format("{0:0}亥{1:0}京{2:0}兆{3:0}億円", 
         Data.money/10000/10000/10000/10000/10000, (Data.money - (Data.money/10000/10000/10000/10000/10000)*10000*10000*10000*10000*10000)/10000/10000/10000/10000 ,
         (Data.money - (Data.money/10000/10000/10000/10000)*10000*10000*10000*10000)/10000/10000/10000, (Data.money - (Data.money/10000/10000/10000)*10000*10000*10000)/10000/10000);
-        }*/
+        }
 
     }
 }
