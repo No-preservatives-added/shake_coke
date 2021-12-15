@@ -115,26 +115,20 @@ public class ManeyDisplay : MonoBehaviour
         (Data.money - (Data.money/BigInteger.Pow(10000,13))*BigInteger.Pow(10000,13))/BigInteger.Pow(10000,12), (Data.money - (Data.money/BigInteger.Pow(10000,12))*BigInteger.Pow(10000,12))/BigInteger.Pow(10000,11));
         }
 
-        if (Data.money >= asougi){
-        moneytext.text = string.Format("{0:0}阿僧祇{1:0}恒河沙{2:0}極{3:0}載円",
-        Data.money/BigInteger.Pow(10000,14), (Data.money - (Data.money/BigInteger.Pow(10000,14))*BigInteger.Pow(10000,14))/BigInteger.Pow(10000,13) ,
-        (Data.money - (Data.money/BigInteger.Pow(10000,13))*BigInteger.Pow(10000,13))/BigInteger.Pow(10000,12), (Data.money - (Data.money/BigInteger.Pow(10000,12))*BigInteger.Pow(10000,12))/BigInteger.Pow(10000,11));
-        }
-
         if (Data.money >= nayuta){
-        moneytext.text = string.Format("{0:0}阿僧祇{1:0}恒河沙{2:0}極{3:0}載円",
+        moneytext.text = string.Format("{0:0}那由他{1:0}阿僧祇{2:0}恒河沙{3:0}極円",
         Data.money/BigInteger.Pow(10000,15), (Data.money - (Data.money/BigInteger.Pow(10000,15))*BigInteger.Pow(10000,15))/BigInteger.Pow(10000,14) ,
         (Data.money - (Data.money/BigInteger.Pow(10000,14))*BigInteger.Pow(10000,14))/BigInteger.Pow(10000,13), (Data.money - (Data.money/BigInteger.Pow(10000,13))*BigInteger.Pow(10000,13))/BigInteger.Pow(10000,12));
         }
 
         if (Data.money >= hukashigi){
-        moneytext.text = string.Format("{0:0}不可思議{1:0}阿僧祇{2:0}恒河沙{3:0}極円",
+        moneytext.text = string.Format("{0:0}不可思議{1:0}那由他{2:0}阿僧祇{3:0}恒河沙円",
         Data.money/BigInteger.Pow(10000,16), (Data.money - (Data.money/BigInteger.Pow(10000,16))*BigInteger.Pow(10000,16))/BigInteger.Pow(10000,15) ,
         (Data.money - (Data.money/BigInteger.Pow(10000,15))*BigInteger.Pow(10000,15))/BigInteger.Pow(10000,14), (Data.money - (Data.money/BigInteger.Pow(10000,14))*BigInteger.Pow(10000,14))/BigInteger.Pow(10000,13));
         }
 
         if (Data.money >= muryoutaisuu){
-        moneytext.text = string.Format("{0:0}無量大数{1:0}不可思議{2:0}阿僧祇{3:0}恒河沙円",
+        moneytext.text = string.Format("{0:0}無量大数{1:0}不可思議{2:0}那由他{3:0}阿僧祇円",
         Data.money/BigInteger.Pow(10000,17), (Data.money - (Data.money/BigInteger.Pow(10000,17))*BigInteger.Pow(10000,17))/BigInteger.Pow(10000,16) ,
         (Data.money - (Data.money/BigInteger.Pow(10000,16))*BigInteger.Pow(10000,16))/BigInteger.Pow(10000,15), (Data.money - (Data.money/BigInteger.Pow(10000,15))*BigInteger.Pow(10000,15))/BigInteger.Pow(10000,14));
         }
