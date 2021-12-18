@@ -22,7 +22,7 @@ public class LevelDisp : MonoBehaviour
     public Text MagnificationCostText;
     void Start()
     {
-        SaveLoad.Load();
+
     }
 
     // Update is called once per frame
