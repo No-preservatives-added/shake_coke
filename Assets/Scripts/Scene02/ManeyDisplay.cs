@@ -133,9 +133,9 @@ public class ManeyDisplay : MonoBehaviour
         (Data.money - (Data.money/BigInteger.Pow(10000,16))*BigInteger.Pow(10000,16))/BigInteger.Pow(10000,15), (Data.money - (Data.money/BigInteger.Pow(10000,15))*BigInteger.Pow(10000,15))/BigInteger.Pow(10000,14));
         }
 
-        for (int i = 1; Data.money < BigInteger.Pow(10,68+i); i++){
+        /*for (int i = 1; Data.money < BigInteger.Pow(10,68+i); i++){
         moneytext.text = string.Format("{0:0}×10^{1:0}",
         Data.money/BigInteger.Pow(10,53+i), 53+i);    
-        }
+        }*/
     }
 }
