@@ -13,7 +13,7 @@ public class MoneyDisplay : MonoBehaviour
     private int moneyStringLength = 0;
     private int moneyOffset = 0;
     private int unitNum = 0;
-    private string[] unitList = new string[] { "", "万", "億", "兆", "京", "垓", "𥝱", "穣", "溝", "あ", "い", "う", "え", "お", "か", "き", "無量大数"};
+    private string[] unitList = new string[] { "", "万", "億", "兆", "京", "垓", "𥝱", "穣", "溝", "澗", "正", "載", "極", "恒河沙", "阿僧祇", "那由他", "不可思議","無量大数"};
 
 /*
     public static BigInteger kei = 10000000000000000;
@@ -41,9 +41,9 @@ public class MoneyDisplay : MonoBehaviour
     {
         moneyString = Data.money.ToString("0"); //文字列変換
         moneyStringLength = moneyString.Length; //文字数カウント
-        Debug.Log(moneyString+","+moneyStringLength); //確認
+        //Debug.Log(moneyString+","+moneyStringLength); //確認
 
-        if (moneyStringLength < 69){ //無量大数までの単位で表せる
+        if (moneyStringLength < 73){ //無量大数までの単位で表せる
             moneyOffset = (moneyStringLength+3)%4+1; //最初の単位までの桁計算1-4
             unitNum = (int)(moneyStringLength+3)/4-1; //単位の数
             moneyText.text = moneyString.Substring(0, moneyOffset)+unitList[unitNum]; //表示文字列=最初の単位までの数字+最初の単位
