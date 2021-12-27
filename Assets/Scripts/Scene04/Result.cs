@@ -18,7 +18,7 @@ public class Result : MonoBehaviour
     {
         WaitTime = 0.0f;
         CurrentMoney = 0;
-        InternalPressure = BigInteger.Pow(Data.CokeLevel,2) * Data.ShakeCount;
+        InternalPressure = BigInteger.Pow(Data.CokeLevel,2) * Data.ImaginaryShakeCount;
 
         /*
         InternalPressure = Math.Pow(1.1, (Data.CokeLevel - 1)) * Data.ShakeCount;

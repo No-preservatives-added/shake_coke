@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -68,6 +69,8 @@ public class MyTimer : MonoBehaviour
 
         MarginTime=Data.MarginTime;
         ShakeTime = 0.0f;
+
+        Data.StopTime= (float)(5-((5-1)*(((double)Data.StopLevel-1)/20+1))/(Math.Exp(((double)Data.StopLevel-1)/20)));
     }
 
     // Update is called once per frame

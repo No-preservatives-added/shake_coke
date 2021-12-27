@@ -21,7 +21,6 @@ public class AppearItem : MonoBehaviour{
         if(master.GetComponent<MyTimer>().isRemainTimeUsing){
             if(WaitTime>=0.2f){
                 R = UnityEngine.Random.value;
-                Debug.Log(R);
                 WaitTime=0;
             }
             if(R<=Probability){
