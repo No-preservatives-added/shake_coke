@@ -30,7 +30,7 @@ public class Result : MonoBehaviour
         ElectricPowerGeneration = (InternalPressure + Math.Pow(1.5, Data.WaterWheelLevel - 1)) * Math.Pow(5.0, Data.DynamoLevel - 1)/10;
         */
 
-        ElectricPowerGeneration =  InternalPressure*BigInteger.Pow(Data.WaterWheelLevel,3)*BigInteger.Pow(Data.DynamoLevel,100);
+        ElectricPowerGeneration =  InternalPressure*BigInteger.Pow(Data.WaterWheelLevel,3)*BigInteger.Pow(10,(Data.DynamoLevel-1)*20);
 
         CurrentElectricPowerGeneration = ElectricPowerGeneration;
         CurrentElectricPowerGenerationsmall = (double)ElectricPowerGeneration;
