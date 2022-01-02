@@ -17,20 +17,20 @@ public class BottleOpen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public IEnumerator ZoomToCokeBottle(){
         Vector3 targetPosition = targetObject.transform.position + new Vector3 (0.0f, 1.0f, 0.0f); //カメラが向く方向をボトルの少し上に設定
         var rotation = Quaternion.LookRotation(targetPosition - _camera.transform.position); //現在のカメラの方向とターゲットの方向の差
         _camera.transform.DORotateQuaternion(rotation, 0.5f); // キャップを向く
-        _camera.DOFieldOfView(10, 0.5f).SetEase(Ease.InBack); // カメラzoom 
+        _camera.DOFieldOfView(10, 0.5f).SetEase(Ease.InBack); // カメラzoom
         yield return new WaitForSeconds(0.5f);
         openButton.SetActive(true);
     }
@@ -42,11 +42,11 @@ public class BottleOpen : MonoBehaviour
     IEnumerator RotateMotion(){
         Debug.Log("RemoveCap");
         yield return StartCoroutine(RemoveCap());// コルーチン実行
-        if (Data.ShakeCount<100){// 振る回数が100より小さかったら時間短く
+        if (Data.ImaginaryShakeCount<100){// 振る回数が100より小さかったら時間短く
             spillSeconds=Data.ShakeCount*0.05f;
         }
         while (spillSeconds>0.0f)
-        {   
+        {
             if (spillSeconds>0.2f){
                 yield return StartCoroutine(RotateWaterwheel(0));
             }else{
@@ -59,7 +59,7 @@ public class BottleOpen : MonoBehaviour
         this.gameObject.GetComponent<SceneSender>().SceneSend(); //シーン遷移
         yield return null;
     }
-    
+
     IEnumerator RemoveCap(){
         openButton.SetActive(false);
         capObject.transform.DORotate(new Vector3(0,-1440,0), 1.5f, RotateMode.LocalAxisAdd).SetEase(Ease.Linear); //キャップ回転
@@ -87,8 +87,8 @@ public class BottleOpen : MonoBehaviour
             _camera.transform.DOMove(new Vector3(0f, 1f, -10f), 2.0f); //元の位置に戻す
             yield return new WaitForSeconds(2.0f);
         }
-        
-        
+
+
     }
 
     private IEnumerator DelayCoroutine(float waittime){

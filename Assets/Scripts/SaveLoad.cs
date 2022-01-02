@@ -41,4 +41,10 @@ public class SaveLoad
         Data.money=BigInteger.Parse(PlayerPrefs.GetString ("Money", "0"));
 
     }
+
+    public static void Reset(){
+        PlayerPrefs.DeleteAll();
+        //playerprefsを保存
+        PlayerPrefs.Save ();
+    }
 }
