@@ -13,6 +13,14 @@ public class Result : MonoBehaviour
     private BigInteger CurrentElectricPowerGeneration, CurrentMoney;
     private double CurrentElectricPowerGenerationsmall, CurrentMoneysmall;
     private float WaitTime;
+    private string moneyString = "";
+    private int moneyStringLength = 0;
+    private int moneyOffset = 0;
+    private string ElectricPowerGenerationString = "";
+    private int ElectricPowerGenerationStringLength = 0;
+    private int ElectricPowerGenerationOffset = 0;
+    private int unitNum = 0;
+    private string[] unitList = new string[] { "", "万", "億", "兆", "京", "垓", "𥝱", "穣", "溝", "澗", "正", "載", "極", "恒河沙", "阿僧祇", "那由他", "不可思議","無量大数"};
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +44,29 @@ public class Result : MonoBehaviour
         CurrentElectricPowerGenerationsmall = (double)ElectricPowerGeneration;
         Money = ElectricPowerGeneration;
         MoneyText.text = string.Format("獲得金額:{0}円", CurrentMoney);
-        ElectricPowerGenerationText.text = string.Format("発電量:{0}kw", CurrentElectricPowerGeneration);
+        
+        if(ElectricPowerGeneration <= 10000){
+            ElectricPowerGenerationText.text = string.Format("発電量:{0}kw", CurrentElectricPowerGeneration);
+        }else{
+            ElectricPowerGenerationString = CurrentElectricPowerGeneration.ToString("0"); //文字列変換
+            ElectricPowerGenerationStringLength = ElectricPowerGenerationString.Length; //文字数カウント
+            //Debug.Log(ElectricPowerGenerationString+","+ElectricPowerGenerationStringLength); //確認
+
+            if (ElectricPowerGenerationStringLength < 73){ //無量大数までの単位で表せる
+                ElectricPowerGenerationOffset = (ElectricPowerGenerationStringLength+3)%4+1; //最初の単位までの桁計算1-4
+                unitNum = (int)(ElectricPowerGenerationStringLength+3)/4-1; //単位の数
+                ElectricPowerGenerationText.text = ElectricPowerGenerationString.Substring(0, ElectricPowerGenerationOffset)+unitList[unitNum]; //表示文字列=最初の単位までの数字+最初の単位
+                for (int i=unitNum;i>0;i--) {
+                    ElectricPowerGenerationText.text += ElectricPowerGenerationString.Substring(ElectricPowerGenerationOffset+4*(unitNum-i), 4)+unitList[i-1]; //表示文字列に（単位までの数字+単位）を追加
+                    if ((unitNum-i) == 0) break; //単位を2回出力したらやめる
+                }
+            }else{ //無量大数より大きい
+                ElectricPowerGenerationText.text += ElectricPowerGenerationString.Substring(0, 1)+"."+ElectricPowerGenerationString.Substring(1, 8)+"×10^"+(ElectricPowerGenerationStringLength-1); //1桁.8桁×10^(文字数-1)
+            }
+            ElectricPowerGenerationText.text += "kw"; //表示文字列に円を追加
+            ElectricPowerGenerationText.text = ElectricPowerGenerationText.text.Insert(0,"発電量:");
+        }
+
         ShakeCountText.text = string.Format("振った回数:{0}回", Data.ShakeCount);
         InternalPressureText.text = string.Format("最終的な内圧:{0:0}Pa", InternalPressure);
         SecondText.text = string.Format("振った秒数:{0:0.00}秒",Data.ShakeTime);
@@ -58,95 +88,81 @@ public class Result : MonoBehaviour
         else
         {
             if(ElectricPowerGeneration <= 10000){
-            if (CurrentElectricPowerGenerationsmall > 0)
-            {
-                CurrentElectricPowerGenerationsmall -= (double)ElectricPowerGeneration * (Time.deltaTime / 2.0f);
+                if (CurrentElectricPowerGenerationsmall > 0){
+                    CurrentElectricPowerGenerationsmall -= (double)ElectricPowerGeneration * (Time.deltaTime / 2.0f);
+                }
+
+                if (CurrentElectricPowerGenerationsmall <= 0){
+                    CurrentElectricPowerGenerationsmall = (double)0;
+                }
+                
+                ElectricPowerGenerationText.text = string.Format("発電量:{0:0.00}kw", CurrentElectricPowerGenerationsmall);
+            }else{
+                if (CurrentElectricPowerGeneration > 0){
+                    CurrentElectricPowerGeneration -= ElectricPowerGeneration / (BigInteger)(2.0f / Time.deltaTime);
+                }
+
+                if (CurrentElectricPowerGeneration <= 0){
+                    CurrentElectricPowerGeneration = 0;
+                }
+
+            ElectricPowerGenerationString = CurrentElectricPowerGeneration.ToString("0"); //文字列変換
+            ElectricPowerGenerationStringLength = ElectricPowerGenerationString.Length; //文字数カウント
+            //Debug.Log(ElectricPowerGenerationString+","+ElectricPowerGenerationStringLength); //確認
+
+            if (ElectricPowerGenerationStringLength < 73){ //無量大数までの単位で表せる
+                ElectricPowerGenerationOffset = (ElectricPowerGenerationStringLength+3)%4+1; //最初の単位までの桁計算1-4
+                unitNum = (int)(ElectricPowerGenerationStringLength+3)/4-1; //単位の数
+                ElectricPowerGenerationText.text = ElectricPowerGenerationString.Substring(0, ElectricPowerGenerationOffset)+unitList[unitNum]; //表示文字列=最初の単位までの数字+最初の単位
+                for (int i=unitNum;i>0;i--) {
+                    ElectricPowerGenerationText.text += ElectricPowerGenerationString.Substring(ElectricPowerGenerationOffset+4*(unitNum-i), 4)+unitList[i-1]; //表示文字列に（単位までの数字+単位）を追加
+                    if ((unitNum-i) == 0) break; //単位を2回出力したらやめる
+                }
+            }else{ //無量大数より大きい
+                ElectricPowerGenerationText.text = ElectricPowerGenerationString.Substring(0, 1)+"."+ElectricPowerGenerationString.Substring(1, 8)+"×10^"+(ElectricPowerGenerationStringLength-1); //1桁.8桁×10^(文字数-1)
             }
-
-            if (CurrentElectricPowerGenerationsmall <= 0)
-            {
-                CurrentElectricPowerGenerationsmall = (double)0;
-            }
-
-            ElectricPowerGenerationText.text = string.Format("発電量:{0:0.00}kw", CurrentElectricPowerGenerationsmall);
-
+            ElectricPowerGenerationText.text += "kw"; //表示文字列に円を追加
+            ElectricPowerGenerationText.text = ElectricPowerGenerationText.text.Insert(0,"発電量:");
             }
 
             if(Money <= 10000){
+                if (CurrentMoneysmall < (double)Money){
+                    CurrentMoneysmall += (double)Money * (Time.deltaTime / 2.0f);
+                }
 
-            if (CurrentMoneysmall < (double)Money)
-            {
-                 CurrentMoneysmall += (double)Money * (Time.deltaTime / 2.0f);
+                if (CurrentMoneysmall >= (double)Money){
+                    CurrentMoneysmall = (double)Money;
+                }
+
+                MoneyText.text = string.Format("獲得金額:{0:0}円", CurrentMoneysmall);
+            }else{
+                
+                if (CurrentMoney < Money){
+                    CurrentMoney += Money / (BigInteger)(2.0f / Time.deltaTime);
+                }
+
+                if (CurrentMoney >= Money){
+                    CurrentMoney = Money;
+                }
+            
+            moneyString = CurrentMoney.ToString("0"); //文字列変換
+            moneyStringLength = moneyString.Length; //文字数カウント
+            //Debug.Log(moneyString+","+moneyStringLength); //確認
+
+            if (moneyStringLength < 73){ //無量大数までの単位で表せる
+                moneyOffset = (moneyStringLength+3)%4+1; //最初の単位までの桁計算1-4
+                unitNum = (int)(moneyStringLength+3)/4-1; //単位の数
+                MoneyText.text = moneyString.Substring(0, moneyOffset)+unitList[unitNum]; //表示文字列=最初の単位までの数字+最初の単位
+                for (int i=unitNum;i>0;i--) {
+                    MoneyText.text += moneyString.Substring(moneyOffset+4*(unitNum-i), 4)+unitList[i-1]; //表示文字列に（単位までの数字+単位）を追加
+                    if ((unitNum-i) == 0) break; //単位を2回出力したらやめる
+                }
+            }else{ //無量大数より大きい
+                MoneyText.text = moneyString.Substring(0, 1)+"."+moneyString.Substring(1, 8)+"×10^"+(moneyStringLength-1); //1桁.8桁×10^(文字数-1)
             }
-
-            if (CurrentMoneysmall >= (double)Money)
-            {
-                CurrentMoneysmall = (double)Money;
-            }
-
-            MoneyText.text = string.Format("獲得金額:{0:0}円", CurrentMoneysmall);
-
-            }
-
-
-            else{
-            if (CurrentElectricPowerGeneration > 0)
-            {
-                CurrentElectricPowerGeneration -= ElectricPowerGeneration / (BigInteger)(2.0f / Time.deltaTime);
-            }
-
-            if (CurrentElectricPowerGeneration <= 0)
-            {
-                CurrentElectricPowerGeneration = 0;
-            }
-
-
-            if (CurrentMoney < Money)
-            {
-                CurrentMoney += Money / (BigInteger)(2.0f / Time.deltaTime);
-            }
-
-            if (CurrentMoney >= Money)
-            {
-                CurrentMoney = Money;
-            }
-
-            if (CurrentMoney >= 10000){
-            MoneyText.text = string.Format("獲得金額:{0:0}万{1:0}円", CurrentMoney/10000, CurrentMoney - (CurrentMoney/10000)*10000);
-            }
-
-            if (CurrentMoney >= 100000000){
-            MoneyText.text = string.Format("獲得金額:{0:0}億{1:0}万{2:0}円", CurrentMoney/100000000, (CurrentMoney - (CurrentMoney/100000000)*100000000)/10000, CurrentMoney - (CurrentMoney/10000)*10000);
-            }
-
-            if (CurrentMoney >= 1000000000000){
-            MoneyText.text = string.Format("獲得金額:{0:0}兆{1:0}億{2:0}万{3:0}円", 
-            CurrentMoney/1000000000000, (CurrentMoney - (CurrentMoney/1000000000000)*1000000000000)/100000000 ,(CurrentMoney - (CurrentMoney/100000000)*100000000)/10000, CurrentMoney - (CurrentMoney/10000)*10000);
-            }
-
-            if (CurrentMoney >= 10000000000000000){
-            MoneyText.text = string.Format("獲得金額:{0:0}京{1:0}兆{2:0}億{3:0}万円", 
-            CurrentMoney/10000000000000000, (CurrentMoney - (CurrentMoney/10000000000000000)*10000000000000000)/1000000000000 ,(CurrentMoney - (CurrentMoney/1000000000000)*1000000000000)/100000000, (CurrentMoney - (CurrentMoney/100000000)*100000000)/10000);
-            }
-
+            MoneyText.text += "円"; //表示文字列に円を追加
+            MoneyText.text = MoneyText.text.Insert(0,"獲得金額:");
             }
         }
-
-        /*DOTween.To
-            (
-                () => CurrentElectricPowerGeneration,       //何に
-                (x) => CurrentElectricPowerGeneration = x,  //何を
-                0,                                          //どこまで(最終的な値)
-                1                                        //どれくらいの時間
-            ).SetEase(Ease.Linear);
-
-            DOTween.To
-            (
-                () => CurrentMoney,         //何に
-                (x) => CurrentMoney = x,    //何を
-                Money,                      //どこまで(最終的な値)
-                1                        //どれくらいの時間
-            ).SetEase(Ease.Linear);*/
-
     }
 }
