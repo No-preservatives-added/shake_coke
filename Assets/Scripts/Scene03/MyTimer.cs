@@ -27,7 +27,7 @@ public class MyTimer : MonoBehaviour
         StopTimeObject.SetActive(false);
         
         if(Data.BottleLevel < 7){
-            RemainTime=3.0f+1.0f*(Data.BottleLevel-1);
+            RemainTime=Data.RemainTime+1.0f*(Data.BottleLevel-1);
         }
         
         else if(Data.BottleLevel < 17){

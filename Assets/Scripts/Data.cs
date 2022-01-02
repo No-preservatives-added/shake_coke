@@ -41,7 +41,7 @@ public class Data
     public static float MarginTime = 3.0f;
     public static float RemainTime = 3.0f;
     //public static float RemainTime=1.0f; // デバッグ用
-    public static float StopTime = 5.0f;
+    public static float StopTime = 1.0f;
 
 
 }
