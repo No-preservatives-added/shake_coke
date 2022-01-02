@@ -25,15 +25,15 @@ public class MyTimer : MonoBehaviour
     {
         isMarginTimeUsing=true;
         StopTimeObject.SetActive(false);
-        
+
         if(Data.BottleLevel < 7){
             RemainTime=Data.RemainTime+1.0f*(Data.BottleLevel-1);
         }
-        
+
         else if(Data.BottleLevel < 17){
             RemainTime=8.0f+0.7f*(Data.BottleLevel-6);
-        } 
-        
+        }
+
         else if(Data.BottleLevel < 27){
             RemainTime=15.0f+0.5f*(Data.BottleLevel-16);
         }
@@ -57,11 +57,11 @@ public class MyTimer : MonoBehaviour
         else if(Data.BottleLevel < 787){
             RemainTime=40.0f+0.03f*(Data.BottleLevel-286);
         }
- 
+
         else if(Data.BottleLevel < 1537){
             RemainTime=45.0f+0.02f*(Data.BottleLevel-786);
         }
-        
+
         else{
             RemainTime=60.0f+0.01f*(Data.BottleLevel-1536);
         }
@@ -88,7 +88,7 @@ public class MyTimer : MonoBehaviour
         }else if(isStopTimeUsing){ // ストップウォッチで止めた時間
             StopTime-=Time.deltaTime;
             ShakeTime += Time.deltaTime;
-            Debug.Log("StopTime = "+StopTime);
+            //Debug.Log("StopTime = "+StopTime);
             if(StopTime<0.0f){
                 isStopTimeUsing=false;
                 isRemainTimeUsing=true; // 残り時間を使う
@@ -96,7 +96,7 @@ public class MyTimer : MonoBehaviour
             }
         }else if(isMarginTimeUsing){ // 最初のマージン
             MarginTime-=Time.deltaTime;
-            Debug.Log("MarginTime = "+MarginTime);
+            //Debug.Log("MarginTime = "+MarginTime);
             if(MarginTime<0.0f){
                 if(RemainTime>0.0f){ //3,2,1,0のカウントダウン後
                     MarginTimeText.enabled = false;
