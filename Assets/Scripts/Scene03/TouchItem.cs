@@ -18,7 +18,7 @@ public class TouchItem : MonoBehaviour
     }
     public void onClickAct() {
 
-        master.GetComponent<MyTimer>().StopTime = Data.StopTime;
+        master.GetComponent<MyTimer>().StopTime = Data.StopTime; 
         master.GetComponent<MyTimer>().isRemainTimeUsing = false;
         master.GetComponent<MyTimer>().isStopTimeUsing = true;
         Item.SetActive(false);

@@ -38,7 +38,7 @@ public class Result : MonoBehaviour
         MoneyText.text = string.Format("獲得金額:{0}円", CurrentMoney);
         ElectricPowerGenerationText.text = string.Format("発電量:{0}kw", CurrentElectricPowerGeneration);
         ShakeCountText.text = string.Format("振った回数:{0}回", Data.ShakeCount);
-        InternalPressureText.text = string.Format("最終的な内圧:{0:0.000}Pa", InternalPressure);
+        InternalPressureText.text = string.Format("最終的な内圧:{0:0}Pa", InternalPressure);
         SecondText.text = string.Format("振った秒数:{0:0.00}秒",Data.ShakeTime);
 
         Data.money += Money;
@@ -57,7 +57,7 @@ public class Result : MonoBehaviour
 
         else
         {
-            if(ElectricPowerGeneration < 1000){
+            if(ElectricPowerGeneration <= 10000){
             if (CurrentElectricPowerGenerationsmall > 0)
             {
                 CurrentElectricPowerGenerationsmall -= (double)ElectricPowerGeneration * (Time.deltaTime / 2.0f);
@@ -72,7 +72,7 @@ public class Result : MonoBehaviour
 
             }
 
-            if(Money < 1000){
+            if(Money <= 10000){
 
             if (CurrentMoneysmall < (double)Money)
             {
@@ -100,6 +100,7 @@ public class Result : MonoBehaviour
                 CurrentElectricPowerGeneration = 0;
             }
 
+
             if (CurrentMoney < Money)
             {
                 CurrentMoney += Money / (BigInteger)(2.0f / Time.deltaTime);
@@ -110,9 +111,23 @@ public class Result : MonoBehaviour
                 CurrentMoney = Money;
             }
 
-            MoneyText.text = string.Format("獲得金額:{0:0}円", CurrentMoney);
+            if (CurrentMoney >= 10000){
+            MoneyText.text = string.Format("獲得金額:{0:0}万{1:0}円", CurrentMoney/10000, CurrentMoney - (CurrentMoney/10000)*10000);
+            }
 
-            ElectricPowerGenerationText.text = string.Format("発電量:{0:0.00}kw", CurrentElectricPowerGeneration);
+            if (CurrentMoney >= 100000000){
+            MoneyText.text = string.Format("獲得金額:{0:0}億{1:0}万{2:0}円", CurrentMoney/100000000, (CurrentMoney - (CurrentMoney/100000000)*100000000)/10000, CurrentMoney - (CurrentMoney/10000)*10000);
+            }
+
+            if (CurrentMoney >= 1000000000000){
+            MoneyText.text = string.Format("獲得金額:{0:0}兆{1:0}億{2:0}万{3:0}円", 
+            CurrentMoney/1000000000000, (CurrentMoney - (CurrentMoney/1000000000000)*1000000000000)/100000000 ,(CurrentMoney - (CurrentMoney/100000000)*100000000)/10000, CurrentMoney - (CurrentMoney/10000)*10000);
+            }
+
+            if (CurrentMoney >= 10000000000000000){
+            MoneyText.text = string.Format("獲得金額:{0:0}京{1:0}兆{2:0}億{3:0}万円", 
+            CurrentMoney/10000000000000000, (CurrentMoney - (CurrentMoney/10000000000000000)*10000000000000000)/1000000000000 ,(CurrentMoney - (CurrentMoney/1000000000000)*1000000000000)/100000000, (CurrentMoney - (CurrentMoney/100000000)*100000000)/10000);
+            }
 
             }
         }
