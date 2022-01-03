@@ -30,22 +30,6 @@ public class LevelUp : MonoBehaviour
         Data.BottleLevel++;
         Data.money -= Data.BottleCost;
 
-        /*if(Data.BottleLevel < 11){
-        Data.BottleCost = (BigInteger)(Data.DefaultBottleCost*(1+0.25*(Data.BottleLevel-1)));
-        }
-
-        else if(Data.BottleLevel < 105){
-        Data.BottleCost = (BigInteger)(Data.DefaultBottleCost*(1+0.5*(Data.BottleLevel-1))-500);
-        }
-
-        else if(Data.BottleLevel < 195){
-        Data.BottleCost = (BigInteger)(Data.DefaultBottleCost*(1+5.0*(Data.BottleLevel-1))-93200);
-        }
-
-        else{
-        Data.BottleCost = (BigInteger)(Data.DefaultBottleCost*Math.Pow(1.05,(Data.BottleLevel-1))-2470798);
-        }*/
-        
         if(Data.BottleLevel < 7){
         Data.BottleCost = (BigInteger)((BigInteger)Data.DefaultBottleCost+5000*((BigInteger)Data.BottleLevel-1));
         }
