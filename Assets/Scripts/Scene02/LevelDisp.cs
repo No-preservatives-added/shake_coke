@@ -37,12 +37,12 @@ public class LevelDisp : MonoBehaviour
         MagnificationLevelText.text = Data.MagnificationLevel.ToString();
 
 
-        CokeCostText.text = $"NEED {Data.CokeCost.ToString()} MONEY";
-        BottleCostText.text = $"NEED {Data.BottleCost.ToString()} MONEY";
-        WaterWheelCostText.text = $"NEED {Data.WaterWheelCost.ToString()} MONEY";
-        DynamoCostText.text = $"NEED {Data.DynamoCost.ToString()} MONEY";
-        ProbabilityCostText.text = $"NEED {Data.ProbabilityCost.ToString()} MONEY";
-        StopCostText.text = $"NEED {Data.StopCost.ToString()} MONEY";
-        MagnificationCostText.text = $"NEED {Data.MagnificationCost.ToString()} MONEY";
+        CokeCostText.text = $"NEED {UnitDisplay.Display(Data.CokeCost)} MONEY";
+        BottleCostText.text = $"NEED {UnitDisplay.Display(Data.BottleCost)} MONEY";
+        WaterWheelCostText.text = $"NEED {UnitDisplay.Display(Data.WaterWheelCost)} MONEY";
+        DynamoCostText.text = $"NEED {UnitDisplay.Display(Data.DynamoCost)} MONEY";
+        ProbabilityCostText.text = $"NEED {UnitDisplay.Display(Data.ProbabilityCost)} MONEY";
+        StopCostText.text = $"NEED {UnitDisplay.Display(Data.StopCost)} MONEY";
+        MagnificationCostText.text = $"NEED {UnitDisplay.Display(Data.MagnificationCost)} MONEY";
     }
 }
