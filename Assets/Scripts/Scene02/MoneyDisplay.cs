@@ -55,7 +55,7 @@ public class MoneyDisplay : MonoBehaviour
             moneyText.text = moneyString.Substring(0, 1)+"."+moneyString.Substring(1, 8)+"×10^"+(moneyStringLength-1); //1桁.8桁×10^(文字数-1)
         }
         moneyText.text += "円"; //表示文字列に円を追加
-
+        moneyText.text += Name.NameChange(Data.Name);
 
         //moneyText.text = Data.money.ToString("0");
 
@@ -73,17 +73,17 @@ public class MoneyDisplay : MonoBehaviour
         }
 
         if (Data.money >= 1000000000000){
-        moneytext.text = string.Format("{0:0}兆{1:0}億{2:0}万{3:0}円", 
+        moneytext.text = string.Format("{0:0}兆{1:0}億{2:0}万{3:0}円",
         Data.money/1000000000000, (Data.money - (Data.money/1000000000000)*1000000000000)/100000000 ,(Data.money - (Data.money/100000000)*100000000)/10000, Data.money - (Data.money/10000)*10000);
         }
 
         if (Data.money >= 10000000000000000){
-        moneytext.text = string.Format("{0:0}京{1:0}兆{2:0}億{3:0}万円", 
+        moneytext.text = string.Format("{0:0}京{1:0}兆{2:0}億{3:0}万円",
         Data.money/10000000000000000, (Data.money - (Data.money/10000000000000000)*10000000000000000)/1000000000000 ,(Data.money - (Data.money/1000000000000)*1000000000000)/100000000, (Data.money - (Data.money/100000000)*100000000)/10000);
         }
-        
+
         if (Data.money >= gai){
-        moneytext.text = string.Format("{0:0}垓{1:0}京{2:0}兆{3:0}億円", 
+        moneytext.text = string.Format("{0:0}垓{1:0}京{2:0}兆{3:0}億円",
         Data.money/BigInteger.Pow(10000,5), (Data.money - (Data.money/BigInteger.Pow(10000,5))*BigInteger.Pow(10000,5))/BigInteger.Pow(10000,4) ,
         (Data.money - (Data.money/BigInteger.Pow(10000,4))*BigInteger.Pow(10000,4))/BigInteger.Pow(10000,3), (Data.money - (Data.money/BigInteger.Pow(10000,3))*BigInteger.Pow(10000,3))/BigInteger.Pow(10000,2));
         }
@@ -123,7 +123,7 @@ public class MoneyDisplay : MonoBehaviour
         Data.money/BigInteger.Pow(10000,11), (Data.money - (Data.money/BigInteger.Pow(10000,11))*BigInteger.Pow(10000,11))/BigInteger.Pow(10000,10) ,
         (Data.money - (Data.money/BigInteger.Pow(10000,10))*BigInteger.Pow(10000,10))/BigInteger.Pow(10000,9), (Data.money - (Data.money/BigInteger.Pow(10000,9))*BigInteger.Pow(10000,9))/BigInteger.Pow(10000,8));
         }
-        
+
         if (Data.money >= goku){
         moneytext.text = string.Format("{0:0}極{1:0}載{2:0}正{3:0}澗円",
         Data.money/BigInteger.Pow(10000,12), (Data.money - (Data.money/BigInteger.Pow(10000,12))*BigInteger.Pow(10000,12))/BigInteger.Pow(10000,11) ,

@@ -17,6 +17,7 @@ public class Data
 
 
 
+
     public static BigInteger money = 0;
 
     public static int CokeLevel = 1;
@@ -43,6 +44,13 @@ public class Data
     public static float RemainTime = 3.0f;
     //public static float RemainTime=1.0f; // デバッグ用
     public static float StopTime = 1.0f;
+
+
+
+
+
+
+    public static string Name="ふじた";
 
 
 }
