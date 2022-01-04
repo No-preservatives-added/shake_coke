@@ -702,7 +702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &313992183
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1354,6 +1354,7 @@ MonoBehaviour:
   waterwheelObject: {fileID: 1186235286}
   spillSeconds: 10
   waterParticle: {fileID: 530386523}
+  skipButton: {fileID: 313992182}
 --- !u!114 &467946995
 MonoBehaviour:
   m_ObjectHideFlags: 0

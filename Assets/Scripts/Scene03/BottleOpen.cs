@@ -13,6 +13,7 @@ public class BottleOpen : MonoBehaviour
     [SerializeField] private GameObject waterwheelObject;
     [SerializeField] private float spillSeconds=10.0f;
     [SerializeField] private GameObject waterParticle;
+    [SerializeField] private GameObject skipButton;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,7 @@ public class BottleOpen : MonoBehaviour
     IEnumerator RotateMotion(){
         Debug.Log("RemoveCap");
         yield return StartCoroutine(RemoveCap());// コルーチン実行
+        skipButton.gameObject.SetActive(true);// skipボタン出現
         if (Data.ImaginaryShakeCount<100){// 振る回数が100より小さかったら時間短く
             spillSeconds=Data.ShakeCount*0.05f;
         }
