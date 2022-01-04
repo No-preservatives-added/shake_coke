@@ -22,8 +22,21 @@ public class Result : MonoBehaviour
 
         /////////////////////////////////バランス調整ここから//////////////////////////////////////
 
-        InternalPressure = Data.ImaginaryShakeCount * Data.CokeLevel;
-        ElectricPowerGeneration = InternalPressure*BigInteger.Pow(10,(Data.DynamoLevel-1)*20);
+        //InternalPressure = Data.ImaginaryShakeCount * Data.CokeLevel;
+        
+        int tmpCokeLevel = Data.CokeLevel;
+        int count = 0;
+        while(tmpCokeLevel>20){
+            tmpCokeLevel -= 20;
+            InternalPressure += (BigInteger)(Data.ImaginaryShakeCount * Math.Pow(2,count) * 20 / 10);
+            count++;
+        }
+        InternalPressure += (BigInteger)(Data.ImaginaryShakeCount * Math.Pow(2,count) * tmpCokeLevel / 10);
+        Debug.Log("InternalPressure = "+InternalPressure);
+
+        //InternalPressure = Data.ImaginaryShakeCount * Data.CokeLevel / 10;
+        //ElectricPowerGeneration = InternalPressure*Data.WaterWheelLevel*BigInteger.Pow(10,(Data.DynamoLevel-1)*20);
+        ElectricPowerGeneration = InternalPressure * BigInteger.Pow(10,(Data.DynamoLevel-1)*20);
 
         /////////////////////////////////バランス調整ここまで//////////////////////////////////////
 

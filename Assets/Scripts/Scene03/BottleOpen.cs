@@ -36,8 +36,8 @@ public class BottleOpen : MonoBehaviour
         openButton.SetActive(true);
     }
 
-    public void RemoveCapStart(){ // ボタンが押された
-        StartCoroutine(RotateMotion());// コルーチン実行
+    public void RemoveCapStart(){ //ボタンが押された
+        StartCoroutine(RotateMotion()); //コルーチン実行
     }
 
     IEnumerator RotateMotion(){
