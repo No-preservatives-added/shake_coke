@@ -13,6 +13,7 @@ public class Result : MonoBehaviour
     private BigInteger CurrentElectricPowerGeneration, CurrentMoney;
     private double CurrentElectricPowerGenerationsmall, CurrentMoneysmall;
     private float WaitTime;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,23 +21,21 @@ public class Result : MonoBehaviour
         CurrentMoney = 0;
         InternalPressure = BigInteger.Pow(Data.CokeLevel,2) * Data.ImaginaryShakeCount;
 
-        /*
-        InternalPressure = Math.Pow(1.1, (Data.CokeLevel - 1)) * Data.ShakeCount;
-
-        ElectricPowerGeneration = InternalPressure * ((double)(1 +((Data.WaterWheelLevel)- 1)*3) / 100) * Math.Pow(5.0, 1 +(((Data.DynamoLevel)- 1)- 1))*10.0;
-
-        ElectricPowerGeneration = (InternalPressure * Math.Pow(5.0, Data.DynamoLevel - 1) + Math.Pow(1.1, Data.WaterWheelLevel - 1))/10;
-
-        ElectricPowerGeneration = (InternalPressure + Math.Pow(1.5, Data.WaterWheelLevel - 1)) * Math.Pow(5.0, Data.DynamoLevel - 1)/10;
-        */
-
         ElectricPowerGeneration =  InternalPressure*BigInteger.Pow(Data.WaterWheelLevel,3)*BigInteger.Pow(10,(Data.DynamoLevel-1)*20);
 
         CurrentElectricPowerGeneration = ElectricPowerGeneration;
         CurrentElectricPowerGenerationsmall = (double)ElectricPowerGeneration;
         Money = ElectricPowerGeneration;
         MoneyText.text = string.Format("獲得金額:{0}円", CurrentMoney);
-        ElectricPowerGenerationText.text = string.Format("発電量:{0}kw", CurrentElectricPowerGeneration);
+        
+        if(ElectricPowerGeneration <= 10000){
+            ElectricPowerGenerationText.text = string.Format("発電量:{0}kw", CurrentElectricPowerGeneration);
+        }else{
+            ElectricPowerGenerationText.text = UnitDisplay.Display(CurrentElectricPowerGeneration);
+            ElectricPowerGenerationText.text += "kw"; //表示文字列にkwを追加
+            ElectricPowerGenerationText.text = ElectricPowerGenerationText.text.Insert(0,"発電量:");//表示文字列頭に発電量を追加
+        }
+
         ShakeCountText.text = string.Format("振った回数:{0}回", Data.ShakeCount);
         InternalPressureText.text = string.Format("最終的な内圧:{0:0}Pa", InternalPressure);
         SecondText.text = string.Format("振った秒数:{0:0.00}秒",Data.ShakeTime);
@@ -58,95 +57,51 @@ public class Result : MonoBehaviour
         else
         {
             if(ElectricPowerGeneration <= 10000){
-            if (CurrentElectricPowerGenerationsmall > 0)
-            {
-                CurrentElectricPowerGenerationsmall -= (double)ElectricPowerGeneration * (Time.deltaTime / 2.0f);
-            }
+                if (CurrentElectricPowerGenerationsmall > 0){
+                    CurrentElectricPowerGenerationsmall -= (double)ElectricPowerGeneration * (Time.deltaTime / 2.0f);
+                }
 
-            if (CurrentElectricPowerGenerationsmall <= 0)
-            {
-                CurrentElectricPowerGenerationsmall = (double)0;
-            }
+                if (CurrentElectricPowerGenerationsmall <= 0){
+                    CurrentElectricPowerGenerationsmall = (double)0;
+                }
+                
+                ElectricPowerGenerationText.text = string.Format("発電量:{0:0.00}kw", CurrentElectricPowerGenerationsmall);
+            }else{
+                if (CurrentElectricPowerGeneration > 0){
+                    CurrentElectricPowerGeneration -= ElectricPowerGeneration / (BigInteger)(2.0f / Time.deltaTime);
+                }
 
-            ElectricPowerGenerationText.text = string.Format("発電量:{0:0.00}kw", CurrentElectricPowerGenerationsmall);
-
+                if (CurrentElectricPowerGeneration <= 0){
+                    CurrentElectricPowerGeneration = 0;
+                }
+            ElectricPowerGenerationText.text = UnitDisplay.Display(CurrentElectricPowerGeneration);
+            ElectricPowerGenerationText.text += "kw"; //表示文字列にkwを追加
+            ElectricPowerGenerationText.text = ElectricPowerGenerationText.text.Insert(0,"発電量:");//表示文字列頭に発電量を追加
             }
 
             if(Money <= 10000){
+                if (CurrentMoneysmall < (double)Money){
+                    CurrentMoneysmall += (double)Money * (Time.deltaTime / 2.0f);
+                }
 
-            if (CurrentMoneysmall < (double)Money)
-            {
-                 CurrentMoneysmall += (double)Money * (Time.deltaTime / 2.0f);
-            }
+                if (CurrentMoneysmall >= (double)Money){
+                    CurrentMoneysmall = (double)Money;
+                }
 
-            if (CurrentMoneysmall >= (double)Money)
-            {
-                CurrentMoneysmall = (double)Money;
-            }
+                MoneyText.text = string.Format("獲得金額:{0:0}円", CurrentMoneysmall);
+            }else{
+                
+                if (CurrentMoney < Money){
+                    CurrentMoney += Money / (BigInteger)(2.0f / Time.deltaTime);
+                }
 
-            MoneyText.text = string.Format("獲得金額:{0:0}円", CurrentMoneysmall);
-
-            }
-
-
-            else{
-            if (CurrentElectricPowerGeneration > 0)
-            {
-                CurrentElectricPowerGeneration -= ElectricPowerGeneration / (BigInteger)(2.0f / Time.deltaTime);
-            }
-
-            if (CurrentElectricPowerGeneration <= 0)
-            {
-                CurrentElectricPowerGeneration = 0;
-            }
-
-
-            if (CurrentMoney < Money)
-            {
-                CurrentMoney += Money / (BigInteger)(2.0f / Time.deltaTime);
-            }
-
-            if (CurrentMoney >= Money)
-            {
-                CurrentMoney = Money;
-            }
-
-            if (CurrentMoney >= 10000){
-            MoneyText.text = string.Format("獲得金額:{0:0}万{1:0}円", CurrentMoney/10000, CurrentMoney - (CurrentMoney/10000)*10000);
-            }
-
-            if (CurrentMoney >= 100000000){
-            MoneyText.text = string.Format("獲得金額:{0:0}億{1:0}万{2:0}円", CurrentMoney/100000000, (CurrentMoney - (CurrentMoney/100000000)*100000000)/10000, CurrentMoney - (CurrentMoney/10000)*10000);
-            }
-
-            if (CurrentMoney >= 1000000000000){
-            MoneyText.text = string.Format("獲得金額:{0:0}兆{1:0}億{2:0}万{3:0}円", 
-            CurrentMoney/1000000000000, (CurrentMoney - (CurrentMoney/1000000000000)*1000000000000)/100000000 ,(CurrentMoney - (CurrentMoney/100000000)*100000000)/10000, CurrentMoney - (CurrentMoney/10000)*10000);
-            }
-
-            if (CurrentMoney >= 10000000000000000){
-            MoneyText.text = string.Format("獲得金額:{0:0}京{1:0}兆{2:0}億{3:0}万円", 
-            CurrentMoney/10000000000000000, (CurrentMoney - (CurrentMoney/10000000000000000)*10000000000000000)/1000000000000 ,(CurrentMoney - (CurrentMoney/1000000000000)*1000000000000)/100000000, (CurrentMoney - (CurrentMoney/100000000)*100000000)/10000);
-            }
-
+                if (CurrentMoney >= Money){
+                    CurrentMoney = Money;
+                }
+            MoneyText.text = UnitDisplay.Display(CurrentMoney);
+            MoneyText.text += "円"; //表示文字列に円を追加
+            MoneyText.text = MoneyText.text.Insert(0,"獲得金額:");//表示文字列頭に獲得金額を追加
             }
         }
-
-        /*DOTween.To
-            (
-                () => CurrentElectricPowerGeneration,       //何に
-                (x) => CurrentElectricPowerGeneration = x,  //何を
-                0,                                          //どこまで(最終的な値)
-                1                                        //どれくらいの時間
-            ).SetEase(Ease.Linear);
-
-            DOTween.To
-            (
-                () => CurrentMoney,         //何に
-                (x) => CurrentMoney = x,    //何を
-                Money,                      //どこまで(最終的な値)
-                1                        //どれくらいの時間
-            ).SetEase(Ease.Linear);*/
-
     }
 }
