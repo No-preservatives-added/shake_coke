@@ -11,7 +11,7 @@ public class LevelUp : MonoBehaviour
     {
         Data.CokeLevel++;
         Data.money -= Data.CokeCost;
-        Data.CokeCost = (BigInteger)(Data.DefaultCokeCost*(BigInteger)(Math.Pow(1.05f,Data.CokeLevel)*100)/100);
+        Data.CokeCost = (BigInteger)(Data.DefaultCokeCost*(BigInteger)(Math.Pow(1.07f,Data.CokeLevel)*100)/100);
 
         /*Data.CokeCost = (BigInteger)(Data.DefaultCokeCost*Math.Pow(1.05,(Data.CokeLevel-1)));
 
