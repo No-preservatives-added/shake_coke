@@ -12,7 +12,7 @@ public class UnitDisplay
         int xStringLength = 0;
         int unitOffset = 0;
         int unitNum = 0;
-        string[] unitList = new string[] { "", "万", "億", "兆", "京", "垓", "𥝱", "穣", "溝", "澗", "正", "載", "極", "恒河沙", "阿僧祇", "那由他", "不可思議","無量大数"};
+        string[] unitList = new string[] { "", "万", "億", "兆", "京", "垓", "秭", "穣", "溝", "澗", "正", "載", "極", "恒河沙", "阿僧祇", "那由他", "不可思議","無量大数"};
 
         xString = x.ToString("0"); //文字列変換
         xStringLength = xString.Length; //文字数カウント

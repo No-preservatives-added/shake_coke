@@ -19,9 +19,26 @@ public class Result : MonoBehaviour
     {
         WaitTime = 0.0f;
         CurrentMoney = 0;
-        InternalPressure = BigInteger.Pow(Data.CokeLevel,2) * Data.ImaginaryShakeCount;
 
-        ElectricPowerGeneration =  InternalPressure*BigInteger.Pow(Data.WaterWheelLevel,3)*BigInteger.Pow(10,(Data.DynamoLevel-1)*20);
+        /////////////////////////////////バランス調整ここから//////////////////////////////////////
+
+        //InternalPressure = Data.ImaginaryShakeCount * Data.CokeLevel;
+        
+        int tmpCokeLevel = Data.CokeLevel;
+        int count = 0;
+        while(tmpCokeLevel>20){
+            tmpCokeLevel -= 20;
+            InternalPressure += (BigInteger)(Data.ImaginaryShakeCount * Math.Pow(2,count) * 20 / 10);
+            count++;
+        }
+        InternalPressure += (BigInteger)(Data.ImaginaryShakeCount * Math.Pow(2,count) * tmpCokeLevel / 10);
+        Debug.Log("InternalPressure = "+InternalPressure);
+
+        //InternalPressure = Data.ImaginaryShakeCount * Data.CokeLevel / 10;
+        //ElectricPowerGeneration = InternalPressure*Data.WaterWheelLevel*BigInteger.Pow(10,(Data.DynamoLevel-1)*20);
+        ElectricPowerGeneration = InternalPressure * BigInteger.Pow(10,(Data.DynamoLevel-1)*20);
+
+        /////////////////////////////////バランス調整ここまで//////////////////////////////////////
 
         CurrentElectricPowerGeneration = ElectricPowerGeneration;
         CurrentElectricPowerGenerationsmall = (double)ElectricPowerGeneration;

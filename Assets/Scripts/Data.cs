@@ -6,7 +6,7 @@ using System.Numerics;
 public class Data
 {
     //定数の定義
-    public static BigInteger DefaultCokeCost = 10;
+    public static BigInteger DefaultCokeCost = 100;
     public static BigInteger DefaultBottleCost = 25000;
     public static BigInteger DefaultWaterWheelCost = 100;
     public static BigInteger DefaultDynamoCost = 200000000000;
